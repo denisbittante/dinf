@@ -1,13 +1,9 @@
-# Performance-Evaluation von Open Source Reporting Engine
-## Bachelor Thesis 
+# SoaupUi Projekt 
 
-## Fragestellungen 
+## Ziel
 
-**Welche Open Source Reporting Engine (OSRE) bietet die beste Leistung um performante
-Services für skalierbare Webanwendungen zu implementieren?**
-Das Themengebiet wurde somit auf die Leistungs- und Performancemessungen einer OSRE
-eingegrenzt.
+Es wird ein SoapUi Projekt erstellt der die REST-Schnittstellen aufruft. Je nach Test Scenario wird auf der respektiven Schnittstelle verschiedene Last generiert.  
 
-## Arbeitsfragen 
-- Welche OSRE bietet den höchsten Durchsatz pro Sekunde?
-- Welche OSRE benötigt am wenigsten Ressourcen?
+## Projektstruktur: 
+
+** To Be defined **

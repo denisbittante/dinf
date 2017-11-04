@@ -3,5 +3,5 @@
 
 ## Ziel
 
-Eine Applikation mit verschiedenen Injected Pdf-Generatoren, durch eine POM configuration sollen die jeweiligen Generatoren mit released werden. 
+Eine Applikation mit verschiedenen Injected Pdf-Generatoren. Durch ein POM sollen die jeweiligen Generatoren im Reease einbebunden werden. 
 
