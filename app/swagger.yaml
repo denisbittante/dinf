@@ -1,0 +1,80 @@
+swagger: '2.0'
+info:
+  description: Performance Test for pdf generators
+  version: 1.0.0
+  title: Bachelor-Thesis
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: denisbittante@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost
+basePath: /v1
+tags:
+  - name: pdf
+    description: Everything about your Pdf
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  /generatepdf:
+    post:
+      tags:
+        - pdf
+      summary: generates PDF with a OpenSource Generator
+      description: ''
+      operationId: createsPdf
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/pdf
+      parameters:
+        - in: body
+          name: body
+          description: Data to create a PDF
+          required: true
+          schema:
+            $ref: '#/definitions/Pdf'
+      responses:
+        '405':
+          description: Invalid input
+definitions:
+  Row:
+    type: object
+    properties:
+      key:
+        type: string
+        example: key
+      val:
+        type: string
+        example: value
+    xml:
+      name: Row
+  Pdf:
+    type: object
+    properties:
+      data:
+        type: array
+        xml:
+          name: data
+          wrapped: false
+        items:
+          $ref: '#/definitions/Row'
+      scenario:
+        type: string
+        description: Test-Scenario definied which template the generator has to use
+        enum:
+          - testscenario1
+          - testscenario2
+          - testscenario3
+          - testscenario4
+          - testscenario5
+    xml:
+      name: Pet
+externalDocs:
+  description: This Project is hostest on GitHub
+  url: 'https://github.com/denisbittante/dinf'
