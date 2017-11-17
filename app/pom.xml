@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ch.ffhs.dinf.osre</groupId>
+  <artifactId>prototype-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>Haupt Pom für die Prototypen</name>
+  <version>1.0.0</version>
+
+
+  <modules>
+	<module>assembly</module>
+	<module>service</module>
+	<module>jasper-report</module>
+	<module>itext</module>
+	<module>apache-pdf-box</module>
+  </modules>
+</project>

@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.ffhs.dinf.osre</groupId>
+	<artifactId>prototype-jasper-report</artifactId>
+	<packaging>pom</packaging>
+	<name>Jasper Report Impl</name>
+	<version>1.0.0</version>
+	
+	<!-- EXAMPLE: https://stackoverflow.com/questions/24791298/jasperreports-with-maven-and-eclipse-example -->
+	<dependencies>  <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.4.3</version>
+		</dependency>
+	</dependencies>
+
+
+
+</project>

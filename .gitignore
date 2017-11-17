@@ -1,0 +1,6 @@
+app/.project
+app/.settings/org.eclipse.m2e.core.prefs
+*.project
+app/assembly/.settings/org.eclipse.m2e.core.prefs
+*.prefs
+*.classpath
