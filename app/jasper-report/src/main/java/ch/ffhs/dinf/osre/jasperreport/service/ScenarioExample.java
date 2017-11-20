@@ -6,13 +6,21 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JRPropertiesHolder;
+import net.sf.jasperreports.engine.JRPropertiesMap;
+import net.sf.jasperreports.engine.JRPropertyExpression;
+import net.sf.jasperreports.engine.JRStyle;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.base.JRBaseField;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.type.SectionTypeEnum;
 import net.sf.jasperreports.swing.JRViewer;
 
 public class ScenarioExample {
@@ -24,6 +32,12 @@ public class ScenarioExample {
 		// First, compile jrxml file.
 		JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 		// Fields for report
+		JasperDesign jasperDesign = new JasperDesign();
+		JRBaseField jf = JRBaseField();
+		jasperDesign.addField());
+
+		System.out.println(jasperReport.getFields()[0].getName());
+
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("company", "MAROTHIA TECHS");
@@ -40,8 +54,8 @@ public class ScenarioExample {
 		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(list);
 		JasperPrint print = JasperFillManager.fillReport(jasperReport, null, beanColDataSource);
 
-		/** To see it in a viewer : **/ 
-		
+		/** To see it in a viewer : **/
+
 		// JRViewer viewer = new JRViewer(print);
 		// viewer.setOpaque(true);
 		// viewer.setVisible(true);
