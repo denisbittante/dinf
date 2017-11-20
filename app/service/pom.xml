@@ -1,11 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.ffhs.dinf.osre</groupId>
 	<artifactId>service</artifactId>
 	<packaging>jar</packaging>
 	<name>REST Interface für die PDF-Services</name>
-	<version>1.0.0</version>
 	<ciManagement></ciManagement>
 
 	<build>
@@ -181,4 +179,9 @@
 		<servlet-api-version>2.5</servlet-api-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<parent>
+		<groupId>ch.ffhs.dinf.osre</groupId>
+		<artifactId>prototype-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 </project>
