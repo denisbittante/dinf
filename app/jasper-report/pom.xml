@@ -30,6 +30,7 @@
 			<groupId>ch.ffhs.dinf.osre</groupId>
 			<artifactId>service</artifactId>
 			<version>1.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Jasper Report Dependencies -->

@@ -31,7 +31,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>ApiOriginFilter</filter-name>
-        <filter-class>io.swagger.api.ApiOriginFilter</filter-class>
+        <filter-class>ch.ffhs.dinf.osre.api.ApiOriginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ApiOriginFilter</filter-name>

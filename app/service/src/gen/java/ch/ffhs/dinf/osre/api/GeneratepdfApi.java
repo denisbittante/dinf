@@ -45,7 +45,7 @@ public class GeneratepdfApi  {
     @POST
     
     @Consumes({ "application/json", "application/xml" })
-    @Produces({ "application/pdf" })
+    @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "generates PDF with a OpenSource Generator", notes = "", response = void.class, tags={ "pdf", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = void.class) })
