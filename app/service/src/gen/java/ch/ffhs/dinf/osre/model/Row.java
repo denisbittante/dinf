@@ -11,7 +11,7 @@
  */
 
 
-package io.swagger.model;
+package ch.ffhs.dinf.osre.model;
 
 import java.util.Objects;
 

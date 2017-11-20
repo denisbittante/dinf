@@ -1,4 +1,4 @@
-package io.swagger.api;
+package ch.ffhs.dinf.osre.api;
 
 import java.io.IOException;
 

@@ -1,12 +1,12 @@
-package io.swagger.api.impl;
+package ch.ffhs.dinf.osre.api.impl;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-import io.swagger.api.ApiResponseMessage;
-import io.swagger.api.GeneratepdfApiService;
-import io.swagger.api.NotFoundException;
-import io.swagger.model.Pdf;
+import ch.ffhs.dinf.osre.api.ApiResponseMessage;
+import ch.ffhs.dinf.osre.api.GeneratepdfApiService;
+import ch.ffhs.dinf.osre.api.NotFoundException;
+import ch.ffhs.dinf.osre.model.Pdf;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-11-04T08:37:53.279Z")
 public class GeneratepdfApiServiceImpl extends GeneratepdfApiService {
     @Override

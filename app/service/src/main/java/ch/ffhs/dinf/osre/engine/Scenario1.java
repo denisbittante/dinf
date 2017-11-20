@@ -1,4 +1,4 @@
-package ch.ffhs.osre.engine;
+package ch.ffhs.dinf.osre.engine;
 
 public interface Scenario1 {
 

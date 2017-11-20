@@ -32,9 +32,7 @@ public class ScenarioExample {
 		// First, compile jrxml file.
 		JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 		// Fields for report
-		JasperDesign jasperDesign = new JasperDesign();
-		JRBaseField jf = JRBaseField();
-		jasperDesign.addField());
+
 
 		System.out.println(jasperReport.getFields()[0].getName());
 

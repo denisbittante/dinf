@@ -1,4 +1,4 @@
-package io.swagger.api;
+package ch.ffhs.dinf.osre.api;
 
 import javax.servlet.ServletConfig;
 import javax.ws.rs.Consumes;
@@ -9,9 +9,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import ch.ffhs.dinf.osre.api.factories.GeneratepdfApiServiceFactory;
+import ch.ffhs.dinf.osre.model.Pdf;
 import io.swagger.annotations.ApiParam;
-import io.swagger.api.factories.GeneratepdfApiServiceFactory;
-import io.swagger.model.Pdf;
 
 @Path("/generatepdf")
 

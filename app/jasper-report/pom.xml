@@ -1,10 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.ffhs.dinf.osre</groupId>
 	<artifactId>prototype-jasper-report</artifactId>
 	<name>Jasper Report Impl</name>
-	<version>1.0.0</version>
 
 
 
@@ -40,8 +38,19 @@
 			<artifactId>jasperreports</artifactId>
 			<version>6.4.3</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 
 
+	<parent>
+		<groupId>ch.ffhs.dinf.osre</groupId>
+		<artifactId>prototype-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 </project>

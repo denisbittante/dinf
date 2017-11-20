@@ -80,6 +80,14 @@
 			<artifactId>hyph</artifactId>
 			<version>7.0.2</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<parent>

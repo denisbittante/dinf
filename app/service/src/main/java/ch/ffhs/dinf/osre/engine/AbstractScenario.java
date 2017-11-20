@@ -1,4 +1,4 @@
-package ch.ffhs.osre.engine;
+package ch.ffhs.dinf.osre.engine;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -2,8 +2,8 @@ package ch.ffhs.dinf.osre.jasperreport.service;
 
 import java.io.File;
 
-import ch.ffhs.osre.engine.PdfEngine;
-import io.swagger.model.Pdf;
+import ch.ffhs.dinf.osre.engine.PdfEngine;
+import ch.ffhs.dinf.osre.model.Pdf;
 
 public class PdfServiceImpl implements PdfEngine {
 
