@@ -4,3 +4,10 @@ app/.settings/org.eclipse.m2e.core.prefs
 app/assembly/.settings/org.eclipse.m2e.core.prefs
 *.prefs
 *.classpath
+*.component
+app/assembly/.settings/.jsdtscope
+app/service/.settings/org.eclipse.wst.common.project.facet.core.xml
+app/itext/.settings/org.eclipse.wst.common.project.facet.core.xml
+app/assembly/.settings/org.eclipse.wst.jsdt.ui.superType.name
+app/assembly/.settings/org.eclipse.wst.jsdt.ui.superType.container
+app/assembly/.settings/org.eclipse.wst.common.project.facet.core.xml
