@@ -2,7 +2,7 @@ package ch.ffhs.dinf.osre.engine;
 
 import java.io.File;
 
-import ch.ffhs.dinf.osre.model.Pdf;
+import ch.ffhs.dinf.osre.api.model.Pdf;
 
 public interface PdfEngine {
 

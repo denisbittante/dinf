@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 import ch.ffhs.dinf.osre.api.factories.GeneratepdfApiServiceFactory;
-import ch.ffhs.dinf.osre.model.Pdf;
+import ch.ffhs.dinf.osre.api.model.Pdf;
 import io.swagger.annotations.ApiParam;
 
 @Path("/generatepdf")
@@ -51,7 +51,7 @@ public class GeneratepdfApi  {
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = void.class) })
     public Response createsPdf(@ApiParam(value = "Data to create a PDF" ,required=true) Pdf body
 ,@Context SecurityContext securityContext)
-    throws NotFoundException {
+    throws Exception {
         return delegate.createsPdf(body,securityContext);
     }
 }

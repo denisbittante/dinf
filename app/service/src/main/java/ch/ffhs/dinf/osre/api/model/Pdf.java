@@ -11,7 +11,7 @@
  */
 
 
-package ch.ffhs.dinf.osre.model;
+package ch.ffhs.dinf.osre.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
