@@ -22,14 +22,6 @@
 
 	<dependencies>
 
-		<!-- Service -->
-
-		<dependency>
-			<groupId>ch.ffhs.dinf.osre</groupId>
-			<artifactId>service</artifactId>
-			<version>1.0.0</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<!-- Apache PDF Box -->
 		<dependency>
@@ -68,6 +60,16 @@
 			<version>2.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>ch.ffhs.dinf.osre</groupId>
+			<artifactId>prototype-base</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<parent>

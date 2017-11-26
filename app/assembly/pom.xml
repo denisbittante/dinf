@@ -21,9 +21,10 @@
 			<artifactId>prototype-itext</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>ch.ffhs.dinf.osre</groupId>
-			<artifactId>service</artifactId>
+			<artifactId>prototype-base</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

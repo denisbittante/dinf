@@ -1,10 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>prototype-jasper-report</artifactId>
-	<name>Jasper Report Impl</name>
-
-
+	<artifactId>prototype-base</artifactId>
+	<name>Base Framework</name>
 
 	<parent>
 		<groupId>ch.ffhs.dinf.osre</groupId>
@@ -27,27 +25,17 @@
 		</plugins>
 	</build>
 
-
-	<!-- EXAMPLE: https://stackoverflow.com/questions/24791298/jasperreports-with-maven-and-eclipse-example -->
-	<dependencies> 
-	 <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-
-		<!-- Jasper Report Dependencies -->
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.4.3</version>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.11</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.ffhs.dinf.osre</groupId>
-			<artifactId>prototype-base</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

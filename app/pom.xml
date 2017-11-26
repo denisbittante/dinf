@@ -9,10 +9,11 @@
 
 
 	<modules>
+		<module>base</module>
 		<module>jasper-report</module>
 		<module>itext</module>
 		<module>apache-pdf-box</module>
-		<module>service</module>
+		<module>rest-springboot</module>
 		<module>assembly</module>
 	</modules>
 
@@ -25,6 +26,17 @@
 				<artifactId>junit</artifactId>
 				<version>4.12</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot</artifactId>
+				<version>1.5.8.RELEASE</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>ch.ffhs.dinf.osre</groupId>
+				<artifactId>prototype-base</artifactId>
+				<version>1.0.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
