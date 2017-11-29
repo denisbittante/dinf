@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="4e8ef1a9-f680-48e9-bae4-f5f83745752b" activeEnvironment="Default" name="DINF_LoadTest" resourceRoot="" soapui-version="5.3.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+<con:soapui-project id="4e8ef1a9-f680-48e9-bae4-f5f83745752b" activeEnvironment="Default" name="DINF_LoadTest" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="0c89bbb6-822b-4758-a900-b6236a76cf46" wadlVersion="http://wadl.dev.java.net/2009/02" name="Spring REST Service WADL" type="rest" basePath="" definitionUrl="http://localhost:8080/application.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/application.wadl"><con:part><con:url>http://localhost:8080/application.wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Spring REST Service WADL"/>
+  <resources base="http://localhost:8080/application.wadl">
+    <resource path="/scenario3">
+      <method id="scenario3" name="GET">
+        <doc title="PdfServiceController.scenario3"/>
+      </method>
+    </resource>
+    <resource path="/scenario1">
+      <method id="scenario1" name="GET">
+        <doc title="PdfServiceController.scenario1"/>
+      </method>
+    </resource>
+    <resource path="/scenario2">
+      <method id="scenario2" name="GET">
+        <doc title="PdfServiceController.scenario2"/>
+      </method>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/scenario3" path="/scenario3" id="5f05a8ec-b935-485b-8028-07fd1b7ee9e4"><con:settings/><con:parameters/><con:method name="PdfServiceController.scenario3 - scenario3" id="02723d42-2b5c-4d00-9f2b-b6d9ba523f49" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" id="9367003a-05e9-45d5-9627-2aee4e80bf7a" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/scenario3</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/scenario1" path="/scenario1" id="0ceaa949-7de5-4689-86a4-d31e35642b84"><con:settings/><con:parameters/><con:method name="PdfServiceController.scenario1 - scenario1" id="7b409ed0-4e93-4fde-aec0-ad7eb76a48e7" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" id="611647f0-20c5-4c39-b985-2e24793e9be6" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/scenario2" path="/scenario2" id="8ad2b0b9-6a8c-4755-9607-15d84762cdf9"><con:settings/><con:parameters/><con:method name="PdfServiceController.scenario2 - scenario2" id="1b23a0d9-4f23-4973-8437-a9d31f67c46d" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" id="47c38222-8663-4dd4-971b-ecb7d01402ab" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

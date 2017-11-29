@@ -1,14 +1,12 @@
 package ch.ffhs.dinf.osre.engine.api;
 
-import java.io.File;
-
 public class Pdf {
 
 	private String name;
 	private String description;
-	private File file;
+	private String file;
+	private String status;
 
-	
 	public Pdf(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -18,15 +16,23 @@ public class Pdf {
 		return description;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public File getFile() {
+	public String getFile() {
 		return file;
 	}
 
-	public void setFile(File file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
 

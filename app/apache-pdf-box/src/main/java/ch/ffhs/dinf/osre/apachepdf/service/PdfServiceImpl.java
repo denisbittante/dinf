@@ -1,5 +1,7 @@
 package ch.ffhs.dinf.osre.apachepdf.service;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
 
 import ch.ffhs.dinf.osre.engine.PdfEngine;
@@ -13,7 +15,9 @@ public class PdfServiceImpl implements PdfEngine {
 
 	@Override
 	public ch.ffhs.dinf.osre.engine.api.Pdf createPdfSzenario1(PdfRequest model) {
-		return new Pdf(NAME, "Szenario 1");
+
+		Szenario1Impl szenario1Impl = new Szenario1Impl(NAME, "Szenario 1");
+		return szenario1Impl.build();
 	}
 
 	@Override
