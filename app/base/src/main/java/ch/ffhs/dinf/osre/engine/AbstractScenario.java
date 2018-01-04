@@ -3,21 +3,19 @@ package ch.ffhs.dinf.osre.engine;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 
-import ch.ffhs.dinf.osre.engine.api.Pdf;
+import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 
 public abstract class AbstractScenario {
 
+	private List<HashMap<String, String>> input;
+	private PdfResponse pdf;
 	private final File tempfile;
-
-	public File getTempfile() {
-		return tempfile;
-	}
-
-	private Pdf pdf;
 
 	/**
 	 * Creates a temp File to save it during the process of creating a Pdf.
@@ -30,38 +28,14 @@ public abstract class AbstractScenario {
 	 */
 	public AbstractScenario(String name, String description) {
 
-		pdf = new Pdf(name, description);
+		pdf = new PdfResponse(name, description);
 
 		UUID randomUUID = UUID.randomUUID();
 		tempfile = new File("C:\\temp\\" + randomUUID.toString() + ".pdf");
 
 	}
 
-	public String toBase64() throws Exception {
-
-		String encodedBase64 = null;
-		FileInputStream fileInputStreamReader = new FileInputStream(tempfile);
-		byte[] bytes = new byte[(int) tempfile.length()];
-		fileInputStreamReader.read(bytes);
-		return new String(Base64.encodeBase64(bytes));
-
-	}
-
-	/**
-	 * Release Ressouces etc.
-	 */
-	public void finalizeScenario() {
-		tempfile.deleteOnExit();
-	}
-
-	/**
-	 * to be implemented for each Scenario
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void buildPdf() throws Exception;
-
-	public Pdf build() {
+	public PdfResponse build() {
 		try {
 			createFile();
 			buildPdf();
@@ -71,17 +45,93 @@ public abstract class AbstractScenario {
 			this.pdf.setStatus("nok");
 			System.err.print(e);
 		}
+
+	//	tryToDeleteTempFile();
 		return this.pdf;
 
+	}
+
+
+	/**
+	 * to be implemented for each Scenario
+	 * 
+	 * @throws Exception
+	 */
+	protected abstract void buildPdf() throws Exception;
+
+	public int countPagesByInput() {
+
+		if (input != null) {
+			return input.size();
+		} else {
+			return 0;
+		}
 	}
 
 	private void createFile() {
 		try {
 			tempfile.createNewFile();
-			
+
 		} catch (IOException e) {
 
 		}
+	}
+
+	/**
+	 * Release Ressouces etc.
+	 */
+	public void finalizeScenario() {
+		tempfile.deleteOnExit();
+	}
+
+	public List<HashMap<String, String>> getInput() {
+		return input;
+	}
+
+	public File getTempfile() {
+		return tempfile;
+	}
+
+	protected String input(int i, String string) {
+	
+		if (getInput().size() >= i) {
+	
+			if (getInput().get(i).containsKey(string)) {
+	
+				return getInput().get(i).get(string);
+	
+			}
+		}
+	
+		return "\" not-found : " + string + "\"";
+	}
+
+	public void setInput(List<HashMap<String, String>> input) {
+		this.input = input;
+	}
+
+	public String toBase64() throws Exception {
+
+		String encodedBase64 = null;
+		FileInputStream fileInputStreamReader = new FileInputStream(tempfile);
+		byte[] bytes = new byte[(int) tempfile.length()];
+		fileInputStreamReader.read(bytes);
+		fileInputStreamReader.close();
+		return new String(Base64.encodeBase64(bytes));
+
+	}
+
+	private void tryToDeleteTempFile() {
+
+		if (getTempfile().exists()) {
+			getTempfile().delete();
+			if (!getTempfile().exists()) {
+				System.out.println("Deleted succsessfully !");
+
+			}
+
+		}
+
 	}
 
 }

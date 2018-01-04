@@ -10,110 +10,52 @@
  * Do not edit the class manually.
  */
 
-
 package ch.ffhs.dinf.osre.engine.api;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Pdf
  */
-public class PdfRequest   {
-  private List<Row> data = null;
 
-  /**
-   * Test-Scenario definied which template the generator has to use
-   */
-  public enum ScenarioEnum {
-    TESTSCENARIO1("testscenario1"),
-    
-    TESTSCENARIO2("testscenario2"),
-    
-    TESTSCENARIO3("testscenario3"),
-    
-    TESTSCENARIO4("testscenario4"),
-    
-    TESTSCENARIO5("testscenario5");
+public class PdfRequest {
+	
+	private ArrayList<HashMap<String, String>> data;
+	
+	public PdfRequest() {
+	}
+	public PdfRequest(ArrayList<HashMap<String, String>> data) {
+		this.data = data;
+	}
 
-    private String value;
+	public List<HashMap<String, String>> getData() {
+		return data;
+	}
 
-    ScenarioEnum(String value) {
-      this.value = value;
-    }
+	public void setData(ArrayList<HashMap<String, String>> data) {
+		this.data = data;
+	}
 
-    public String toString() {
-      return String.valueOf(value);
-    }
+	@Override
+	public String toString() {
+		if (data == null || data.isEmpty()) {
+			return "no data";
 
-    public static ScenarioEnum fromValue(String text) {
-      for (ScenarioEnum b : ScenarioEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
+		} else {
+			StringBuffer buffer = new StringBuffer();
+			for (HashMap<String, String> hashMap : data) {
 
-  private ScenarioEnum scenario = null;
+				for (String key : hashMap.keySet()) {
+					buffer.append(key);
+					buffer.append("\n");
 
-  public PdfRequest data(List<Row> data) {
-    this.data = data;
-    return this;
-  }
+				}
+			}
+			return buffer.toString();
+		}
 
-  public PdfRequest addDataItem(Row dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<Row>();
-    }
-    this.data.add(dataItem);
-    return this;
-  }
+	}
 
-  /**
-   * Get data
-   * @return data
-   **/
-  public List<Row> getData() {
-    return data;
-  }
-
-  public void setData(List<Row> data) {
-    this.data = data;
-  }
-
-  public PdfRequest scenario(ScenarioEnum scenario) {
-    this.scenario = scenario;
-    return this;
-  }
-
-  /**
-   * Test-Scenario definied which template the generator has to use
-   * @return scenario
-   **/
-  public ScenarioEnum getScenario() {
-    return scenario;
-  }
-
-  public void setScenario(ScenarioEnum scenario) {
-    this.scenario = scenario;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PdfRequest pdf = (PdfRequest) o;
-    return Objects.equals(this.data, pdf.data) &&
-        Objects.equals(this.scenario, pdf.scenario);
-  }
- 
 }
-
