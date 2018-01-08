@@ -17,10 +17,6 @@ public interface Scenario1 {
 	 */
 	void setAuthor();
 
-	/**
-	 * Set Filename ();
-	 */
-	void setFileName();
 
 	/**
 	 * Defines HELVETICA Size 12 and Normal
@@ -36,10 +32,6 @@ public interface Scenario1 {
 	 */
 	void createChapters() throws Exception;
 
-	/**
-	 * Set PageSize to A4
-	 */
-	void setPageSize();
 
 	/**
 	 * Set Subject Information of the PDF
@@ -50,4 +42,10 @@ public interface Scenario1 {
 	 * Set Keywords that fit PDF
 	 */
 	void setKeywords();
+	/**
+	 * Creates a Title
+	 */
+	void createTitle();
+	
+
 }

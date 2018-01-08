@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.ffhs.dinf.osre.engine.PdfEngine;
-import ch.ffhs.dinf.osre.engine.api.PdfRequest;
+import ch.ffhs.dinf.osre.engine.api.ActivityDetails;
+import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario1;
+import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 
 @RestController("/")
@@ -19,31 +21,21 @@ public class PdfServiceController {
 	private PdfEngine engine;
 
 	@RequestMapping(method = RequestMethod.POST, path = "scenario1")
-	public PdfResponse scenario1(PdfRequest req) {
+	public PdfResponse scenario1(PdfRequestScenario1 req) {
 
-		PdfRequest pdfRequest = new PdfRequest();
-		ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
-		HashMap<String, String> hashMap = new HashMap<>();
-		hashMap.put("test2", "test322");
-		HashMap<String, String> hashMap2 = new HashMap<>();
-		hashMap2.put("test2", "test322");
-		data.add(hashMap);
-		data.add(hashMap2);
+		return engine.createPdfSzenario1(req);
 
-		pdfRequest.setData(data);
-
-		return engine.createPdfSzenario1(pdfRequest);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "scenario2")
-	public PdfResponse scenario2(PdfRequest req) {
+	public PdfResponse scenario2(PdfRequestScenario2 req) {
 
 		return engine.createPdfSzenario2(req);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "scenario3")
-	public PdfResponse scenario3(PdfRequest req) {
+	public PdfResponse scenario3(PdfRequestScenario1 req) {
 
 		return engine.createPdfSzenario3(req);
 

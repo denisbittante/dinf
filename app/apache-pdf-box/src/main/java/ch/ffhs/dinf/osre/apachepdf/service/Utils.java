@@ -25,8 +25,23 @@ public class Utils {
 
 	}
 
+	/**
+	 * Quelle :
+	 * https://stackoverflow.com/questions/19635275/how-to-generate-multiple-lines-in-pdf-using-apache-pdfbox
+	 * 
+	 * @param inputText
+	 * @param fontSize
+	 * @param pagewith
+	 * @param pdfFont
+	 * @return
+	 * @throws IOException
+	 */
 	public static String[] makeSubtextByFontSize(String inputText, int fontSize, float pagewith, PDFont pdfFont)
 			throws IOException {
+
+		if (inputText == null) {
+			inputText = "";
+		}
 
 		List<String> lines = new ArrayList<String>();
 		String[] split = inputText.split("\n");
@@ -40,7 +55,6 @@ public class Utils {
 					spaceIndex = string.length();
 				String subString = string.substring(0, spaceIndex);
 				float size = fontSize * pdfFont.getStringWidth(subString) / 1000;
-				System.out.printf("'%s' - %f of %f\n", subString, size, pagewith);
 				if (size > pagewith) {
 					if (lastSpace < 0) {
 						lastSpace = spaceIndex;
@@ -48,11 +62,9 @@ public class Utils {
 					subString = string.substring(0, lastSpace);
 					lines.add(subString);
 					string = string.substring(lastSpace).trim();
-					System.out.printf("'%s' is line\n", subString);
 					lastSpace = -1;
 				} else if (spaceIndex == string.length()) {
 					lines.add(string);
-					System.out.printf("'%s' is line\n", string);
 					string = "";
 				} else {
 					lastSpace = spaceIndex;
@@ -60,10 +72,7 @@ public class Utils {
 			}
 
 		}
-		System.out.println("ALL LINES : ");
-		for (String string : lines) {
-			System.out.println(string);
-		}
+		
 		return lines.toArray(new String[0]);
 	}
 

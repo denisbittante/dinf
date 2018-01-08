@@ -3,19 +3,26 @@ package ch.ffhs.dinf.osre.engine;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 
-public abstract class AbstractScenario {
+public abstract class AbstractScenario<M> {
 
-	private List<HashMap<String, String>> input;
 	private PdfResponse pdf;
 	private final File tempfile;
+
+	public M getModel() {
+		return model;
+	}
+
+	public void setModel(M model) {
+		this.model = model;
+	}
+
+	private M model;
 
 	/**
 	 * Creates a temp File to save it during the process of creating a Pdf.
@@ -43,14 +50,13 @@ public abstract class AbstractScenario {
 			this.pdf.setStatus("ok");
 		} catch (Exception e) {
 			this.pdf.setStatus("nok");
-			System.err.print(e);
+			e.printStackTrace();
 		}
 
-	//	tryToDeleteTempFile();
+		// tryToDeleteTempFile();
 		return this.pdf;
 
 	}
-
 
 	/**
 	 * to be implemented for each Scenario
@@ -58,15 +64,6 @@ public abstract class AbstractScenario {
 	 * @throws Exception
 	 */
 	protected abstract void buildPdf() throws Exception;
-
-	public int countPagesByInput() {
-
-		if (input != null) {
-			return input.size();
-		} else {
-			return 0;
-		}
-	}
 
 	private void createFile() {
 		try {
@@ -84,30 +81,8 @@ public abstract class AbstractScenario {
 		tempfile.deleteOnExit();
 	}
 
-	public List<HashMap<String, String>> getInput() {
-		return input;
-	}
-
 	public File getTempfile() {
 		return tempfile;
-	}
-
-	protected String input(int i, String string) {
-	
-		if (getInput().size() >= i) {
-	
-			if (getInput().get(i).containsKey(string)) {
-	
-				return getInput().get(i).get(string);
-	
-			}
-		}
-	
-		return "\" not-found : " + string + "\"";
-	}
-
-	public void setInput(List<HashMap<String, String>> input) {
-		this.input = input;
 	}
 
 	public String toBase64() throws Exception {
