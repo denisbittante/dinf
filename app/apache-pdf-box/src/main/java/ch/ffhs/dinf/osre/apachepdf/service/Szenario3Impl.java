@@ -29,17 +29,10 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 	private static final int BORDER_RIGHT = 25;
 	private static final int BORDER_TOP = 50;
 
-	private static final int COL_1 = 50;
-	private static final int COL_2 = 50;
-	private static final int COL_3 = 75;
-	private static final int COL_4 = 75;
-	private static final int COL_5 = 50;
-	private static final int COL_6 = 75;
-	private static final int COL_7 = 75;
-	private static final int COL_8 = 75;
-	private static final int COL_9 = 150;
-	private static final int COL_10 = 75;
-	private static final int COL_11 = 75;
+	private int[] COL_SIZE = new int[] { 50, 50, 75, 30, 70, 70, 70, 40, 180, 120, 37 };
+
+	String malePath = getClass().getResource("/male.jpg").getPath();
+	String femalePath = getClass().getResource("/female.jpg").getPath();
 
 	private PDPageContentStream contentStream;
 	private PDDocument document;
@@ -124,37 +117,36 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 				contentStream.newLine();
 			}
 
-			insertText(contact.getName(), FontType.small, COL_1);
-			contentStream.newLineAtOffset(COL_1, 0f);
+			insertText(contact.getName(), FontType.small, COL_SIZE[0]);
+			contentStream.newLineAtOffset(COL_SIZE[0], 0f);
 
-			insertText(contact.getFirstname(), FontType.small, COL_2);
-			contentStream.newLineAtOffset(COL_2, 0f);
+			insertText(contact.getFirstname(), FontType.small, COL_SIZE[1]);
+			contentStream.newLineAtOffset(COL_SIZE[1], 0f);
 
-			insertText(contact.getAddress(), FontType.small, COL_3);
-			contentStream.newLineAtOffset(COL_3, 0f);
+			insertText(contact.getAddress(), FontType.small, COL_SIZE[2]);
+			contentStream.newLineAtOffset(COL_SIZE[2], 0f);
 
-			insertText(contact.getZip(), FontType.small, COL_4);
-			contentStream.newLineAtOffset(COL_4, 0f);
+			insertText(contact.getZip(), FontType.small, COL_SIZE[3]);
+			contentStream.newLineAtOffset(COL_SIZE[3], 0f);
 
-			insertText(contact.getPlace(), FontType.small, COL_5);
-			contentStream.newLineAtOffset(COL_5, 0f);
+			insertText(contact.getPlace(), FontType.small, COL_SIZE[4]);
+			contentStream.newLineAtOffset(COL_SIZE[4], 0f);
 
-			insertText(contact.getTel(), FontType.small, COL_6);
-			contentStream.newLineAtOffset(COL_6, 0f);
+			insertText(contact.getTel(), FontType.small, COL_SIZE[5]);
+			contentStream.newLineAtOffset(COL_SIZE[5], 0f);
 
-			insertText(contact.getMob(), FontType.small, COL_7);
-			contentStream.newLineAtOffset(COL_7, 0f);
+			insertText(contact.getMob(), FontType.small, COL_SIZE[6]);
+			contentStream.newLineAtOffset(COL_SIZE[6], 0f);
 
-			insertText(contact.getBirthday(), FontType.small, COL_8);
-			contentStream.newLineAtOffset(COL_8, 0f);
+			insertText(contact.getBirthday(), FontType.small, COL_SIZE[7]);
+			contentStream.newLineAtOffset(COL_SIZE[7], 0f);
 
-			insertText(contact.getNote(), FontType.small, COL_9);
-			contentStream.newLineAtOffset(COL_9, 0f);
+			insertText(contact.getNote(), FontType.small, COL_SIZE[8]);
+			contentStream.newLineAtOffset(COL_SIZE[8], 0f);
 
-			insertText(contact.getEmail(), FontType.small, COL_10);
-			contentStream.newLineAtOffset(COL_10, 0f);
+			insertText(contact.getEmail(), FontType.small, COL_SIZE[9]);
+			contentStream.newLineAtOffset(COL_SIZE[9], 0f);
 
-			insertText(contact.getGender(), FontType.small, COL_11);
 			contentStream.newLineAtOffset(-(900f), 0f);
 			contentStream.newLine();
 
@@ -162,10 +154,24 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 		}
 
-		int strokeInitYHeight = 0;
-		int strokeYHeight = 0;
+		addMaleGenderSign();
 
-		for (int i = 0; i < getModel().getContacts().size(); i++) {
+		int strokeInitYHeight = 0;
+		int lowerY = 0;
+
+		lowerY = drawHorizontalLines(lowerY);
+		drawVerticalLine(lowerY);
+
+		// addMaleGenderSign();
+		contentStream.close();
+
+	}
+
+	private int drawHorizontalLines(int lowerY) throws IOException {
+		int strokeInitYHeight;
+		// Draw Horizontal lines
+
+		for (int i = 0; i < getModel().getContacts().size() + 1; i++) {
 
 			// Draws Table
 
@@ -176,28 +182,48 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 			} else {
 				strokeInitYHeight = -BORDER_TOP;
 			}
-			strokeYHeight = (int) (strokeInitYHeight + PAGESIZE.getUpperRightY() - (i * 20));
-			contentStream.moveTo(BORDER_RIGHT, strokeYHeight);
-			contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, strokeYHeight);
+			lowerY = (int) (strokeInitYHeight + PAGESIZE.getUpperRightY() - (i * 20));
+			contentStream.moveTo(BORDER_RIGHT, lowerY);
+			contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, lowerY);
 			contentStream.stroke();
 		}
+		return lowerY;
+	}
 
-		// vertical line
-		contentStream.moveTo(BORDER_LEFT, strokeInitYHeight);
-		contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, strokeYHeight);
+	private void drawVerticalLine(int lowerY) throws IOException {
+		// Draw vertical line
+		float floatingX = BORDER_LEFT;
+		float upperY = PAGESIZE.getUpperRightY() - (50 + BORDER_TOP);
+
+		contentStream.moveTo(floatingX, upperY);
+		contentStream.lineTo(floatingX, lowerY);
 		contentStream.stroke();
 
-		// addMaleGenderSign();
-		contentStream.close();
+		for (int i = 0; i < COL_SIZE.length; i++) {
 
+			floatingX += COL_SIZE[i];
+			contentStream.moveTo(floatingX, upperY);
+			contentStream.lineTo(floatingX, lowerY);
+
+			contentStream.stroke();
+		}
 	}
 
 	private void addMaleGenderSign() throws IOException {
-		String path = getClass().getResource("/male.jpg").getPath();
-		System.out.println(path);
-		PDImageXObject pdImage = PDImageXObject.createFromFile(path, document);
 
-		contentStream.drawImage(pdImage, 100, 100, 20, 20);
+		for (int i = 0; i < getModel().getContacts().size(); i++) {
+			PDImageXObject pdImage = null;
+			if (getModel().getContacts().get(i).getGender() == "m") {
+				pdImage = PDImageXObject.createFromFile(malePath, document);
+
+			} else {
+				pdImage = PDImageXObject.createFromFile(femalePath, document);
+
+			}
+
+			contentStream.drawImage(pdImage, PAGESIZE.getUpperRightX() - BORDER_RIGHT - 30,
+					PAGESIZE.getUpperRightY() - BORDER_TOP - 68 - (20 * i), 16, 16);
+		}
 	}
 
 	@Override
