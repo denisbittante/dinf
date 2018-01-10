@@ -137,8 +137,36 @@ public class PdfServiceImplTest {
 		contact.setTel("+41 55 555 55 55");
 		contact.setZip("9000");
 		contacts.add(contact);
+
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		pdfRequest3.setContacts(contacts);
+
+		PdfResponse createPdfSzenario3 = testee.createPdfSzenario3(pdfRequest3);
+		showPdf(createPdfSzenario3);
+
+	}
+
+	private void createContact(ArrayList<Contact> contacts) {
 		Contact contact2 = new Contact();
-		contact2.setGender("m");
+		contact2.setGender("f");
 		contact2.setAddress("Musterstrasse 12");
 		contact2.setBirthday("2.2.1988");
 		contact2.setEmail("max.muster2000@gmx.ch");
@@ -150,11 +178,6 @@ public class PdfServiceImplTest {
 		contact2.setTel("+41 55 222 22 22");
 		contact2.setZip("9000");
 		contacts.add(contact2);
-		pdfRequest3.setContacts(contacts);
-
-		PdfResponse createPdfSzenario3 = testee.createPdfSzenario3(pdfRequest3);
-		showPdf(createPdfSzenario3);
-
 	}
 
 	private void showPdf(PdfResponse createPdfSzenario1) throws IOException, FileNotFoundException {

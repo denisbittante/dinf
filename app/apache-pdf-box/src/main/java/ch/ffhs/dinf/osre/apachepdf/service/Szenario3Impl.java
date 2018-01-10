@@ -156,7 +156,6 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 		addMaleGenderSign();
 
-		int strokeInitYHeight = 0;
 		int lowerY = 0;
 
 		lowerY = drawHorizontalLines(lowerY);
