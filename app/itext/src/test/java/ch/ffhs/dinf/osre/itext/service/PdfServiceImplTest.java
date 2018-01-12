@@ -1,4 +1,4 @@
-package ch.ffhs.dinf.osre.apachepdf.service;
+package ch.ffhs.dinf.osre.itext.service;
 
 import java.io.IOException;
 
@@ -16,24 +16,24 @@ public class PdfServiceImplTest {
 	@Test
 	public void testScenario1() throws IOException {
 
-		PdfResponse createPdfSzenario1 = testee.createPdfSzenario1(TestUtils.getPdfRequest1());
-		TestUtils.showPdf(createPdfSzenario1);
-
-	}
-
-	@Test
-	public void testScenario2() throws IOException {
-		PdfResponse createPdfSzenario1 = testee.createPdfSzenario2(TestUtils.getPdfRequest2());
-		TestUtils.showPdf(createPdfSzenario1);
+		PdfResponse pdfResponse = testee.createPdfSzenario1(TestUtils.getPdfRequest1());
+		TestUtils.showPdf(pdfResponse);
 
 	}
 
 	@Ignore
 	@Test
+	public void testScenario2() throws IOException {
+		PdfResponse pdfResponse = testee.createPdfSzenario2(TestUtils.getPdfRequest2());
+		TestUtils.showPdf(pdfResponse);
+
+	}
+
+	@Test
 	public void testScenario3() throws IOException {
 
-		PdfResponse createPdfSzenario3 = testee.createPdfSzenario3(TestUtils.getPdfRequest3());
-		TestUtils.showPdf(createPdfSzenario3);
+		PdfResponse pdfResponse = testee.createPdfSzenario3(TestUtils.getPdfRequest3());
+		TestUtils.showPdf(pdfResponse);
 
 	}
 

@@ -55,7 +55,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 		createChapters();
 		setSubject();
 		setKeywords();
-
+		setTitle();
 		document.save(getTempfile());
 		document.close();
 
@@ -89,7 +89,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 			contentStream = new PDPageContentStream(document, page, AppendMode.APPEND, false);
 
 			contentStream.addRect(10, 10, 200, 300);
-			contentStream.setNonStrokingColor(255,100,100);
+			contentStream.setNonStrokingColor(255, 100, 100);
 			contentStream.fill();
 
 			contentStream.beginText();
@@ -128,7 +128,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 	}
 
 	@Override
-	public void createTitle() {
+	public void setTitle() {
 		pdd.setTitle(SUBJECT);
 	}
 
@@ -158,7 +158,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 	@Override
 	public void setFont(FontType t) throws Exception {
-		contentStream.setNonStrokingColor(0,0,0);
+		contentStream.setNonStrokingColor(0, 0, 0);
 
 		switch (t) {
 		case H1:
@@ -187,7 +187,6 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 			break;
 		}
 	}
-
 
 	@Override
 	public void setKeywords() {

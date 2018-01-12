@@ -59,12 +59,13 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 			document.addPage(blankPage);
 		}
 
+		createChapters();
 		setAuthor();
 		setSubject();
-		createChapters();
 		setSubject();
 		setKeywords();
-
+		setTitle();
+		
 		document.save(getTempfile());
 		document.close();
 
@@ -226,7 +227,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 	}
 
 	@Override
-	public void createTitle() {
+	public void setTitle() {
 		pdd.setTitle(SUBJECT);
 	}
 

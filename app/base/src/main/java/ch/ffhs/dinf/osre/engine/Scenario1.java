@@ -32,7 +32,6 @@ public interface Scenario1 {
 	 */
 	void createChapters() throws Exception;
 
-
 	/**
 	 * Set Subject Information of the PDF
 	 */
@@ -45,7 +44,7 @@ public interface Scenario1 {
 	/**
 	 * Creates a Title
 	 */
-	void createTitle();
+	void setTitle();
 	
 
 }

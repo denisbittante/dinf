@@ -8,12 +8,16 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class Utils {
-
+	//@formatter:off
 	public static enum Style {
-		H1(21, PDType1Font.HELVETICA_BOLD), H2(18, PDType1Font.HELVETICA_BOLD), H3(14,
-				PDType1Font.HELVETICA_BOLD), bold(12, PDType1Font.HELVETICA_BOLD), italic(12,
-						PDType1Font.HELVETICA_OBLIQUE), bold_italic(12, PDType1Font.HELVETICA_BOLD_OBLIQUE), small(8,
-								PDType1Font.HELVETICA), normal(12, PDType1Font.HELVETICA);
+		H1(21, PDType1Font.HELVETICA_BOLD),
+		H2(18, PDType1Font.HELVETICA_BOLD),
+		H3(14, PDType1Font.HELVETICA_BOLD),
+		bold(12, PDType1Font.HELVETICA_BOLD),
+		italic(12, PDType1Font.HELVETICA_OBLIQUE), 
+		bold_italic(12, PDType1Font.HELVETICA_BOLD_OBLIQUE), 
+		small(8, PDType1Font.HELVETICA), 
+		normal(12, PDType1Font.HELVETICA);
 
 		public int fontsize;
 		public PDType1Font font;
@@ -24,7 +28,7 @@ public class Utils {
 		}
 
 	}
-
+	//@formatter:on
 	/**
 	 * Quelle :
 	 * https://stackoverflow.com/questions/19635275/how-to-generate-multiple-lines-in-pdf-using-apache-pdfbox
@@ -72,7 +76,7 @@ public class Utils {
 			}
 
 		}
-		
+
 		return lines.toArray(new String[0]);
 	}
 

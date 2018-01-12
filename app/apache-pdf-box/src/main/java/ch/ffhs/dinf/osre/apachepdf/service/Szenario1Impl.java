@@ -53,6 +53,7 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 		createChapters();
 		setSubject();
 		setKeywords();
+		setTitle();
 
 		document.save(getTempfile());
 		document.close();
@@ -83,7 +84,6 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 
 			contentStream = new PDPageContentStream(document, page);
 
-		
 			contentStream.beginText();
 
 			contentStream.newLineAtOffset(BORDER_LEFT, PDRectangle.A4.getUpperRightY() - BORDER_TOP);
@@ -200,7 +200,7 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 	}
 
 	@Override
-	public void createTitle() {
+	public void setTitle() {
 		pdd.setTitle(SUBJECT);
 
 	}
