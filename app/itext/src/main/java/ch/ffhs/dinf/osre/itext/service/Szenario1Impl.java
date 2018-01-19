@@ -73,7 +73,7 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 		setMetadata();
 
 		Document document = new Document(pdfDoc);
-		document.setFont(Style.normal.font);
+		document.setFont(Style.normal.getFont());
 		document.setFontSize(Style.normal.fontsize);
 		createChapters(document);
 		// Closing the document
@@ -106,14 +106,16 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 			pdfDoc.addEventHandler(PdfDocumentEvent.END_PAGE, new TextFooterEventHandler(document, aD));
 			// Creating Paragraphs
 
-			document.add((Paragraph) Utils.style(new Paragraph(aD.getTitle()), Style.H1));
-			document.add((Paragraph) Utils.style(new Paragraph(aD.getDatumVon() + " - " + aD.getDatumBis()), Style.H2));
+			Utils utils = new Utils();
+
+			document.add((Paragraph) utils.style(new Paragraph(aD.getTitle()), Style.H1));
+			document.add((Paragraph) utils.style(new Paragraph(aD.getDatumVon() + " - " + aD.getDatumBis()), Style.H2));
 			document.add(new Paragraph(aD.getDescription()));
-			document.add((Paragraph) Utils.style(new Paragraph("Ort"), Style.bold));
+			document.add((Paragraph) utils.style(new Paragraph("Ort"), Style.bold));
 			document.add(new Paragraph(aD.getPlace()));
-			document.add((Paragraph) Utils.style(new Paragraph("Verantwortlicher"), Style.bold));
+			document.add((Paragraph) utils.style(new Paragraph("Verantwortlicher"), Style.bold));
 			document.add(new Paragraph(aD.getIncharge()));
-			document.add((Paragraph) Utils.style(new Paragraph("Helfer"), Style.bold));
+			document.add((Paragraph) utils.style(new Paragraph("Helfer"), Style.bold));
 			document.add(new Paragraph(aD.getHelper()));
 
 		}
@@ -135,7 +137,7 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 			Rectangle pageSize = docEvent.getPage().getPageSize();
 			canvas.beginText();
 			try {
-				canvas.setFontAndSize(Style.small.font, Style.small.fontsize);
+				canvas.setFontAndSize(Style.small.getFont(), Style.small.fontsize);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

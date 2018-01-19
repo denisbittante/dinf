@@ -7,7 +7,7 @@ import com.itextpdf.layout.ElementPropertyContainer;
 
 public class Utils {
 
-	public static enum Style {
+	public enum Style {
 
 		//@formatter:off
 		H1			(21, StandardFonts.HELVETICA_BOLD),
@@ -21,22 +21,28 @@ public class Utils {
 		//@formatter:on
 
 		public int fontsize;
-		public PdfFont font;
+		private String font;
 
 		Style(int fontsize, String font) {
 			this.fontsize = fontsize;
+			this.font = font;
+		}
+
+		public PdfFont getFont() {
+
 			try {
-				this.font = PdfFontFactory.createFont(font);
+				return PdfFontFactory.createFont(font);
 			} catch (java.io.IOException e) {
 				e.printStackTrace();
 			}
+			return null;
 		}
 
 	}
 
-	public static ElementPropertyContainer style(ElementPropertyContainer element, Style style) {
+	public ElementPropertyContainer style(ElementPropertyContainer element, Style style) {
 
-		element.setFont(style.font);
+		element.setFont(style.getFont());
 		element.setFontSize(style.fontsize);
 		return element;
 	}

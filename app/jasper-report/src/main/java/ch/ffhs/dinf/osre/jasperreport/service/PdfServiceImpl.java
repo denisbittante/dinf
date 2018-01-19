@@ -7,9 +7,6 @@ import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario1;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario3;
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
-import ch.ffhs.dinf.osre.itext.service.Szenario1Impl;
-import ch.ffhs.dinf.osre.itext.service.Szenario2Impl;
-import ch.ffhs.dinf.osre.itext.service.Szenario3Impl;
 
 @Component
 public class PdfServiceImpl implements PdfEngine {

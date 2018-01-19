@@ -76,7 +76,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		setMetadata();
 
 		Document document = new Document(pdfDoc);
-		document.setFont(Style.small.font);
+		document.setFont(Style.small.getFont());
 		document.setFontSize(Style.small.fontsize);
 		createChapters(document);
 		// Closing the document
@@ -88,7 +88,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 	private void createChapters(Document document) throws MalformedURLException {
 
-		document.add((Paragraph) Utils.style(new Paragraph("Kontaktliste"), Style.H1));
+		document.add((Paragraph) (new Utils()).style(new Paragraph("Kontaktliste"), Style.H1));
 
 		Table table = new Table(11);
 		table.setWidth(UnitValue.createPercentValue(100f));
@@ -104,7 +104,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		table.addHeaderCell("Bemerkung");
 		table.addHeaderCell("E-Mail");
 		table.addHeaderCell("Geschlecht");
-		table.getHeader().setFont(Style.bold.font);
+		table.getHeader().setFont(Style.bold.getFont());
 		table.getHeader().setFontSize(Style.small.fontsize);
 		for (Contact group : getModel().getContacts()) {
 

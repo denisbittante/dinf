@@ -71,7 +71,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 		setMetadata();
 
 		Document document = new Document(pdfDoc);
-		document.setFont(Style.normal.font);
+		document.setFont(Style.normal.getFont());
 		document.setFontSize(Style.normal.fontsize);
 		createChapters(document);
 		// Closing the document
@@ -83,6 +83,8 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 	private void createChapters(Document document) {
 
+		Utils utils = new Utils();
+
 		Color mainColor = new DeviceRgb(47, 72, 110);
 		Color subColor = new DeviceRgb(196, 134, 39);
 
@@ -93,7 +95,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 			element.setBorder(Border.NO_BORDER);
 
 			Cell cell = new Cell(0, 3);
-			Paragraph titleParagraph = (Paragraph) Utils.style(new Paragraph(group.getTitle()), Style.H1);
+			Paragraph titleParagraph = (Paragraph) utils.style(new Paragraph(group.getTitle()), Style.H1);
 			cell.add(titleParagraph);
 			cell.setBorder(Border.NO_BORDER);
 			cell.setBackgroundColor(mainColor);
@@ -103,7 +105,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 				if (entry.isSubtitle()) {
 					Cell cellsub = new Cell(0, 3);
-					Paragraph subtitleParagraph = (Paragraph) Utils.style(new Paragraph(entry.getTitle()), Style.H3);
+					Paragraph subtitleParagraph = (Paragraph) utils.style(new Paragraph(entry.getTitle()), Style.H3);
 					cellsub.add(subtitleParagraph);
 					cellsub.setBackgroundColor(subColor);
 					cellsub.setBorder(Border.NO_BORDER);
@@ -112,7 +114,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 				} else {
 
-					Paragraph timePar = (Paragraph) Utils.style(new Paragraph(entry.getTime()), Style.bold_italic);
+					Paragraph timePar = (Paragraph) utils.style(new Paragraph(entry.getTime()), Style.bold_italic);
 					Cell timecell = new Cell();
 					timecell.setBorder(Border.NO_BORDER);
 					timecell.add(timePar);
@@ -123,7 +125,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 					titlecell.setBorder(Border.NO_BORDER);
 					titlecell.add(titlePar);
 					titlecell.setWidth(UnitValue.createPercentValue(70f));
-					Paragraph personPar = (Paragraph) Utils.style(new Paragraph(entry.getPerson()), Style.italic);
+					Paragraph personPar = (Paragraph) utils.style(new Paragraph(entry.getPerson()), Style.italic);
 					Cell personcell = new Cell();
 					personcell.add(personPar);
 					personcell.setBorder(Border.NO_BORDER);
@@ -136,7 +138,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 			}
 
 			Cell cellfooter = new Cell(0, 3);
-			Paragraph footerParagraph = (Paragraph) Utils.style(new Paragraph(group.getFooter()), Style.small);
+			Paragraph footerParagraph = (Paragraph) utils.style(new Paragraph(group.getFooter()), Style.small);
 
 			cellfooter.add(footerParagraph);
 			cellfooter.setBorder(Border.NO_BORDER);

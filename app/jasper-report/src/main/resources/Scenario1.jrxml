@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2018-01-18T21:43:09 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac93376-7509-48fa-bf60-fa53993877a5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="datumVon" class="java.lang.String"/>
+	<field name="datumBis" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="place" class="java.lang.String"/>
+	<field name="incharge" class="java.lang.String"/>
+	<field name="helper" class="java.lang.String"/>
+	<field name="author" class="java.lang.String"/>
+	<detail>
+		<band height="346">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement positionType="Float" x="0" y="0" width="555" height="50" uuid="ad861dc8-fd29-441a-89a9-a3243f8f5e0d"/>
+				<textElement>
+					<font size="21"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="50" width="150" height="25" uuid="52b52acb-a24c-4eb1-bce8-3c83bd17a5e0"/>
+				<textElement>
+					<font fontName="SansSerif" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datumVon}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="" positionType="Float" stretchType="ContainerHeight" x="0" y="75" width="555" height="44" uuid="45249577-4e07-4552-bbe8-f703381e891c"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="0" y="150" width="555" height="30" uuid="9d056c36-238b-4850-b2c0-2c82ba953b22"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{place}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="150" y="50" width="264" height="25" uuid="3e59f400-7f51-4bbe-968b-07ce91b203a8"/>
+				<textElement>
+					<font fontName="SansSerif" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["-" +$F{datumBis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-1" y="119" width="100" height="30" uuid="c1eca484-7c9f-4c82-b36f-c504004bbfe4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Bodoni MT Black" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ort]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="-1" y="180" width="131" height="30" uuid="2d794a57-2f23-48c1-a86f-cccde31decf9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Black" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Verantwortlicher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="240" width="100" height="30" uuid="14f6713f-d78d-45b6-8490-4fc547574226"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Black" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Helfer]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="0" y="210" width="555" height="30" uuid="170be08e-8e88-46ea-bab9-8891e482c32c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incharge}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="0" y="270" width="555" height="30" uuid="c74e1a92-f331-4214-bdf3-1af8f9a361f3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{helper}
+]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="344" width="99" height="1" uuid="564265be-0ce0-4fcf-801b-367a8dc50ddc"/>
+			</break>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="66e271e1-f083-4c39-9237-4ccba02a287a"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="100" height="30" uuid="8d50e937-a3c3-4dba-8bbc-4b2116d1d3ee"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="450" y="0" width="100" height="30" uuid="eb1bff8a-3bd8-4d05-b5c9-a70da2306a33"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-4" y="0" width="140" height="30" uuid="029a36f6-5c1e-48a0-858b-2cd348a464de"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA["Erstellt von: Denis Bittante"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
