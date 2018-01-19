@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-01-19T08:17:29 -->
+<!-- 2018-01-19T19:21:52 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac93376-7509-48fa-bf60-fa53993877a5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
 	<field name="title" class="java.lang.String"/>
-	<field name="footnote" class="java.lang.String"/>
+	<field name="footer" class="java.lang.String"/>
+	<field name="entries" class="java.util.List"/>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
-	<columnHeader>
-		<band height="25" splitType="Stretch">
+	<detail>
+		<band height="160" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="40" forecolor="#FFFFFF" backcolor="#2F486E" uuid="22dfee85-dae2-44dd-b44e-3ebc670156e5"/>
+			</rectangle>
 			<textField pattern="">
-				<reportElement x="0" y="0" width="555" height="25" uuid="a746843e-c1fb-40ba-ad51-c34b7d9d6890"/>
-				<textElement>
-					<font fontName="SansSerif"/>
+				<reportElement x="0" y="0" width="554" height="40" forecolor="#FFFFFF" uuid="a746843e-c1fb-40ba-ad51-c34b7d9d6890"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="21" isBold="true"/>
+					<paragraph leftIndent="3"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="242" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<subreport>
-				<reportElement x="0" y="0" width="555" height="242" uuid="b2ae4a74-6d4d-4d11-b5a9-83d226d7b339"/>
+				<reportElement x="0" y="40" width="554" height="100" uuid="b2ae4a74-6d4d-4d11-b5a9-83d226d7b339"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
-                  ($F{subReportBeanList})]]></dataSourceExpression>
-				<subreportExpression><![CDATA["scenario2.subreport.jasper"]]></subreportExpression>
+                  ($F{entries})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Scenario2Subreport.jasper"]]></subreportExpression>
 			</subreport>
+			<textField>
+				<reportElement positionType="Float" x="0" y="140" width="554" height="20" uuid="d2af5d52-9ac0-4247-8cfa-5a4de0f9f544"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{footer}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

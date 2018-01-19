@@ -2,7 +2,6 @@ package ch.ffhs.dinf.osre.jasperreport.service;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
@@ -12,7 +11,6 @@ public class PdfServiceImplTest {
 
 	PdfServiceImpl testee = new PdfServiceImpl();
 
-	
 	@Test
 	public void testScenario1() throws IOException {
 
@@ -21,15 +19,13 @@ public class PdfServiceImplTest {
 
 	}
 
-	
 	@Test
 	public void testScenario2() throws IOException {
-		PdfResponse createPdfSzenario1 = testee.createPdfSzenario2(TestUtils.getPdfRequest2());
-		TestUtils.showPdf(createPdfSzenario1);
+		PdfResponse createPdfSzenario2 = testee.createPdfSzenario2(TestUtils.getPdfRequest2());
+		TestUtils.showPdf(createPdfSzenario2);
 
 	}
 
-	
 	@Test
 	public void testScenario3() throws IOException {
 

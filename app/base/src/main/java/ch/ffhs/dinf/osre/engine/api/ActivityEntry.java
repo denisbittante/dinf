@@ -20,7 +20,7 @@ public class ActivityEntry {
 	private String time;
 	private String title;
 	private String person;
-	private boolean isSubtitle;
+	private Boolean isSubtitle;
 
 	public String getTime() {
 		return time;
@@ -28,6 +28,14 @@ public class ActivityEntry {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public Boolean getIsSubtitle() {
+		return isSubtitle;
+	}
+
+	public void setIsSubtitle(Boolean isSubtitle) {
+		this.isSubtitle = isSubtitle;
 	}
 
 	public String getTitle() {
