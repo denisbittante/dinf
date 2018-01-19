@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-01-18T21:43:09 -->
+<!-- 2018-01-19T19:42:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac93376-7509-48fa-bf60-fa53993877a5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<field name="title" class="java.lang.String"/>
@@ -53,21 +53,21 @@
 			<staticText>
 				<reportElement positionType="Float" x="-1" y="119" width="100" height="30" uuid="c1eca484-7c9f-4c82-b36f-c504004bbfe4"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Bodoni MT Black" size="12" isBold="false"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ort]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="-1" y="180" width="131" height="30" uuid="2d794a57-2f23-48c1-a86f-cccde31decf9"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Black" size="12" isBold="false"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Verantwortlicher]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="0" y="240" width="100" height="30" uuid="14f6713f-d78d-45b6-8490-4fc547574226"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Black" size="12" isBold="false"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Helfer]]></text>
 			</staticText>
@@ -83,8 +83,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{helper}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{helper}]]></textFieldExpression>
 			</textField>
 			<break>
 				<reportElement x="0" y="344" width="99" height="1" uuid="564265be-0ce0-4fcf-801b-367a8dc50ddc"/>
