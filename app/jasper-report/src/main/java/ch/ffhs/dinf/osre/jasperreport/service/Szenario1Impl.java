@@ -10,15 +10,18 @@ import ch.ffhs.dinf.osre.engine.Scenario1;
 import ch.ffhs.dinf.osre.engine.api.ActivityDetails;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario1;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> implements Scenario1 {
 
-	ArrayList<HashMap<String, Object>> list;
+	ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 
 	public Szenario1Impl(String name, String description) {
 		super(name, description);
@@ -71,18 +74,29 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(list);
 		JasperPrint print = JasperFillManager.fillReport(jasperReport, null, beanColDataSource);
 
-		JasperExportManager.exportReportToPdfFile(print, getTempfile().getAbsolutePath());
+		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setMetadataTitle(FILENAME);
+		configuration.setMetadataAuthor(AUTHOR);
+		configuration.setMetadataCreator(getName());
+		configuration.setMetadataSubject(SUBJECT);
+		configuration.setMetadataKeywords(KEYWORDS);
+
+		JRPdfExporter exporter = new JRPdfExporter();
+		exporter.setExporterInput(new SimpleExporterInput(print));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(getTempfile().getAbsolutePath()));
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
 
 	}
 
 	private void createHashMapInput() {
 
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-
 		PdfRequestScenario1 model = getModel();
 
 		ArrayList<ActivityDetails> data = model.getData();
 		for (ActivityDetails activityDetails : data) {
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 			Field[] declaredFields = activityDetails.getClass().getDeclaredFields();
 			for (Field field : declaredFields) {
@@ -116,10 +130,8 @@ public class Szenario1Impl extends AbstractScenario<PdfRequestScenario1> impleme
 				}
 			}
 
+			list.add(parameters);
 		}
-
-		list = new ArrayList<HashMap<String, Object>>();
-		list.add(parameters);
 
 	}
 

@@ -29,10 +29,14 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 	private static final int BORDER_RIGHT = 25;
 	private static final int BORDER_TOP = 50;
 
+	private static final int DATAROWSPERPAGE = 20;
+	private static final int ROWHEIGHT = 20;
+
 	private int[] COL_SIZE = new int[] { 50, 50, 75, 30, 70, 70, 70, 40, 180, 120, 37 };
 
-	String malePath = getClass().getResource("/male.jpg").getPath();
-	String femalePath = getClass().getResource("/female.jpg").getPath();
+	String malePath = Szenario3Impl.class.getResource("male.jpg").getPath();
+
+	String femalePath = Szenario3Impl.class.getResource("female.jpg").getPath();
 
 	private PDPageContentStream contentStream;
 	private PDDocument document;
@@ -65,7 +69,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		setSubject();
 		setKeywords();
 		setTitle();
-		
+
 		document.save(getTempfile());
 		document.close();
 
@@ -77,9 +81,9 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 	public int countPagesByInput() {
 		int size = getModel().getContacts().size();
-		float mod = size % 20;
+		float mod = size % DATAROWSPERPAGE;
 
-		int countpages = size / 20;
+		int countpages = size / DATAROWSPERPAGE;
 		if (mod > 0) {
 			countpages++;
 		}
@@ -92,14 +96,22 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 	public void createChapters() throws Exception {
 		PDPage page = null;
 		int currentPage = -1;
-
+		int lowerY = 0;
 		for (int i = 0; i < getModel().getContacts().size(); i++) {
 			Contact contact = getModel().getContacts().get(i);
-			int pageIndex = i / 20;
+			int pageIndex = i / DATAROWSPERPAGE;
 
 			if (pageIndex != currentPage) {
+
+				if (contentStream != null) {
+					drawLastTableRowBorder(DATAROWSPERPAGE, lowerY);
+					contentStream.close();
+				}
+
+				lowerY = 0;
 				currentPage = pageIndex;
 				page = document.getPage(currentPage);
+
 				contentStream = new PDPageContentStream(document, page, AppendMode.APPEND, false);
 			}
 
@@ -114,7 +126,8 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 				contentStream.newLine();
 			} else {
 				contentStream.beginText();
-				contentStream.newLineAtOffset(BORDER_LEFT, PAGESIZE.getUpperRightY() - BORDER_TOP - 50 - (i * 20));
+				contentStream.newLineAtOffset(BORDER_LEFT,
+						PAGESIZE.getUpperRightY() - BORDER_TOP - 50 - ((i % DATAROWSPERPAGE) * ROWHEIGHT));
 				contentStream.newLine();
 			}
 
@@ -153,44 +166,46 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 			contentStream.endText();
 
+			addMaleGenderSign(i % DATAROWSPERPAGE);
+
+			lowerY = drawHorizontalLines(i % DATAROWSPERPAGE);
+			drawVerticalLine(i % DATAROWSPERPAGE, lowerY);
+
 		}
 
-		addMaleGenderSign();
-
-		int lowerY = 0;
-
-		lowerY = drawHorizontalLines(lowerY);
-		drawVerticalLine(lowerY);
-
-		// addMaleGenderSign();
+		drawLastTableRowBorder(getModel().getContacts().size() + 1, lowerY);
 		contentStream.close();
 
 	}
 
-	private int drawHorizontalLines(int lowerY) throws IOException {
+	private void drawLastTableRowBorder(int i, int lowerY) throws IOException {
+		lowerY = drawHorizontalLines(i % 21);
+		drawVerticalLine(i % DATAROWSPERPAGE + 1, lowerY);
+
+	}
+
+	private int drawHorizontalLines(int i) throws IOException {
 		int strokeInitYHeight;
 		// Draw Horizontal lines
 
-		for (int i = 0; i < getModel().getContacts().size() + 1; i++) {
+		// Draws Table
 
-			// Draws Table
-
-			// next line at
-			if (i < 20) {
-				// add space for the title
-				strokeInitYHeight = -(50 + BORDER_TOP);
-			} else {
-				strokeInitYHeight = -BORDER_TOP;
-			}
-			lowerY = (int) (strokeInitYHeight + PAGESIZE.getUpperRightY() - (i * 20));
-			contentStream.moveTo(BORDER_RIGHT, lowerY);
-			contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, lowerY);
-			contentStream.stroke();
+		// next line at
+		if (i <= DATAROWSPERPAGE) {
+			// add space for the title
+			strokeInitYHeight = -(50 + BORDER_TOP);
+		} else {
+			strokeInitYHeight = -BORDER_TOP;
 		}
+		int lowerY = (int) (strokeInitYHeight + PAGESIZE.getUpperRightY() - (i * ROWHEIGHT));
+		System.out.println("lowY " + lowerY);
+		contentStream.moveTo(BORDER_RIGHT, lowerY);
+		contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, lowerY);
+		contentStream.stroke();
 		return lowerY;
 	}
 
-	private void drawVerticalLine(int lowerY) throws IOException {
+	private void drawVerticalLine(int i, int lowerY) throws IOException {
 		// Draw vertical line
 		float floatingX = BORDER_LEFT;
 		float upperY = PAGESIZE.getUpperRightY() - (50 + BORDER_TOP);
@@ -199,9 +214,9 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		contentStream.lineTo(floatingX, lowerY);
 		contentStream.stroke();
 
-		for (int i = 0; i < COL_SIZE.length; i++) {
+		for (int colindex = 0; colindex < COL_SIZE.length; colindex++) {
 
-			floatingX += COL_SIZE[i];
+			floatingX += COL_SIZE[colindex];
 			contentStream.moveTo(floatingX, upperY);
 			contentStream.lineTo(floatingX, lowerY);
 
@@ -209,21 +224,19 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		}
 	}
 
-	private void addMaleGenderSign() throws IOException {
+	private void addMaleGenderSign(int i) throws IOException {
 
-		for (int i = 0; i < getModel().getContacts().size(); i++) {
-			PDImageXObject pdImage = null;
-			if (getModel().getContacts().get(i).getGender() == "m") {
-				pdImage = PDImageXObject.createFromFile(malePath, document);
+		PDImageXObject pdImage = null;
+		if (getModel().getContacts().get(i).getGender() == "m") {
+			pdImage = PDImageXObject.createFromFile(malePath, document);
 
-			} else {
-				pdImage = PDImageXObject.createFromFile(femalePath, document);
+		} else {
+			pdImage = PDImageXObject.createFromFile(femalePath, document);
 
-			}
-
-			contentStream.drawImage(pdImage, PAGESIZE.getUpperRightX() - BORDER_RIGHT - 30,
-					PAGESIZE.getUpperRightY() - BORDER_TOP - 68 - (20 * i), 16, 16);
 		}
+
+		contentStream.drawImage(pdImage, PAGESIZE.getUpperRightX() - BORDER_RIGHT - 30,
+				PAGESIZE.getUpperRightY() - BORDER_TOP - 68 - (ROWHEIGHT * i), 16, 16);
 	}
 
 	@Override

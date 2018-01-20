@@ -28,7 +28,7 @@ public class TestUtils {
 		aD.setTitle("Aktivitäts Titel");
 		aD.setDatumBis("12.02.2017 16:00");
 		aD.setDatumVon("12.02.2017 16:00");
-		aD.setDescription(TOM_SAWYER );
+		aD.setDescription(TOM_SAWYER);
 		aD.setPlace("Musterstrasse 12\n9000 St. Gallen\nSchweiz");
 		aD.setIncharge("Denis Bittante");
 		aD.setHelper("Lars Hauser, Someoneelse");
@@ -169,6 +169,11 @@ public class TestUtils {
 		createContact(contacts);
 		createContact(contacts);
 		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
+		createContact(contacts);
 		pdfRequest3.setContacts(contacts);
 
 		return pdfRequest3;
@@ -193,23 +198,23 @@ public class TestUtils {
 
 	public static void showPdf(PdfResponse pdfResponse) throws IOException, FileNotFoundException {
 
-		if (pdfResponse.getFile().length() > 0) {
-
-			File tempFile2 = File.createTempFile("szenario", ".pdf");
-
-			FileOutputStream fileInputStreamReader = new FileOutputStream(tempFile2);
-			fileInputStreamReader.write(Base64.decodeBase64(pdfResponse.getFile()));
-			fileInputStreamReader.close();
-
-			if (Desktop.isDesktopSupported()) {
-				Desktop.getDesktop().open(tempFile2);
-			} else {
-				System.out.println("Awt Desktop is not supported!");
-			}
-
-		} else {
-			System.out.println("File is not exists!");
-		}
+		// To display the PDF directly on the screen
+		/**
+		 * if (pdfResponse.getFile().length() > 0) {
+		 * 
+		 * File tempFile2 = File.createTempFile("szenario", ".pdf");
+		 * 
+		 * FileOutputStream fileInputStreamReader = new
+		 * FileOutputStream(tempFile2);
+		 * fileInputStreamReader.write(Base64.decodeBase64(pdfResponse.getFile()));
+		 * fileInputStreamReader.close();
+		 * 
+		 * if (Desktop.isDesktopSupported()) {
+		 * Desktop.getDesktop().open(tempFile2); } else {
+		 * System.out.println("Awt Desktop is not supported!"); }
+		 * 
+		 * } else { System.out.println("File is not exists!"); }
+		 **/
 	}
 
 }

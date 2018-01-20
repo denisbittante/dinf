@@ -2,15 +2,22 @@ package ch.ffhs.dinf.osre.jasperreport.service;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 import ch.ffhs.dinf.osre.engine.test.TestUtils;
 
+/**
+ * 
+ * Test Suit for Jasper Report
+ * 
+ * @author Denis Bittante
+ *
+ */
 public class PdfServiceImplTest {
 
 	PdfServiceImpl testee = new PdfServiceImpl();
-
 	@Test
 	public void testScenario1() throws IOException {
 
@@ -26,6 +33,7 @@ public class PdfServiceImplTest {
 
 	}
 
+	
 	@Test
 	public void testScenario3() throws IOException {
 

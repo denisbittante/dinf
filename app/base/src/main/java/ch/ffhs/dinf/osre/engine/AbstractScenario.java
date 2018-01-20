@@ -11,18 +11,12 @@ import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 
 public abstract class AbstractScenario<M> {
 
-	private PdfResponse pdf;
-	private final File tempfile;
-
-	public M getModel() {
-		return model;
-	}
-
-	public void setModel(M model) {
-		this.model = model;
-	}
-
 	private M model;
+	private final String name;
+
+	private PdfResponse pdf;
+
+	private final File tempfile;
 
 	/**
 	 * Creates a temp File to save it during the process of creating a Pdf.
@@ -35,8 +29,9 @@ public abstract class AbstractScenario<M> {
 	 */
 	public AbstractScenario(String name, String description) {
 
-		pdf = new PdfResponse(name, description);
+		this.name = name;
 
+		pdf = new PdfResponse(name, description);
 		UUID randomUUID = UUID.randomUUID();
 		tempfile = new File("C:\\temp\\" + randomUUID.toString() + ".pdf");
 
@@ -81,8 +76,20 @@ public abstract class AbstractScenario<M> {
 		tempfile.deleteOnExit();
 	}
 
+	public M getModel() {
+		return model;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public File getTempfile() {
 		return tempfile;
+	}
+
+	public void setModel(M model) {
+		this.model = model;
 	}
 
 	public String toBase64() throws Exception {
@@ -108,5 +115,4 @@ public abstract class AbstractScenario<M> {
 		}
 
 	}
-
 }

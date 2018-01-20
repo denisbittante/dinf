@@ -19,6 +19,10 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
 
@@ -75,7 +79,19 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(list);
 		JasperPrint print = JasperFillManager.fillReport(jasperReport, null, beanColDataSource);
 
-		JasperExportManager.exportReportToPdfFile(print, getTempfile().getAbsolutePath());
+		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setMetadataTitle(FILENAME);
+		configuration.setMetadataAuthor(AUTHOR);
+		configuration.setMetadataCreator(getName());
+		configuration.setMetadataSubject(SUBJECT);
+		configuration.setMetadataKeywords(KEYWORDS);
+
+		JRPdfExporter exporter = new JRPdfExporter();
+		exporter.setExporterInput(new SimpleExporterInput(print));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(getTempfile().getAbsolutePath()));
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
 	}
 
 	private void createHashMapInput() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-01-19T19:42:30 -->
+<!-- 2018-01-20T14:26:06 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac93376-7509-48fa-bf60-fa53993877a5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<field name="title" class="java.lang.String"/>
@@ -18,14 +18,14 @@
 			<textField>
 				<reportElement positionType="Float" x="0" y="0" width="555" height="50" uuid="ad861dc8-fd29-441a-89a9-a3243f8f5e0d"/>
 				<textElement>
-					<font size="21"/>
+					<font size="21" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="0" y="50" width="150" height="25" uuid="52b52acb-a24c-4eb1-bce8-3c83bd17a5e0"/>
 				<textElement>
-					<font fontName="SansSerif" size="18"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{datumVon}]]></textFieldExpression>
 			</textField>
@@ -46,7 +46,7 @@
 			<textField>
 				<reportElement positionType="Float" x="150" y="50" width="264" height="25" uuid="3e59f400-7f51-4bbe-968b-07ce91b203a8"/>
 				<textElement>
-					<font fontName="SansSerif" size="18"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["-" +$F{datumBis}]]></textFieldExpression>
 			</textField>
@@ -115,7 +115,9 @@
 			</textField>
 			<textField>
 				<reportElement x="-4" y="0" width="140" height="30" uuid="029a36f6-5c1e-48a0-858b-2cd348a464de"/>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Erstellt von: Denis Bittante"]]></textFieldExpression>
 			</textField>
 		</band>

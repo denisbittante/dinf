@@ -1,5 +1,7 @@
 package ch.ffhs.dinf.osre.apachepdf.service;
 
+import java.awt.Color;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -22,7 +24,7 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 	private static final int BORDER_TOP = 50;
 
 	private static final int COL_1 = 50;
-	private static final int COL_2 = 300;
+	private static final int COL_2 = 350;
 	private static final int COL_3 = 100;
 
 	private PDPageContentStream contentStream;
@@ -88,8 +90,17 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 			contentStream = new PDPageContentStream(document, page, AppendMode.APPEND, false);
 
-			contentStream.addRect(10, 10, 200, 300);
-			contentStream.setNonStrokingColor(255, 100, 100);
+			if (i % 2 == 0) {
+				// for 1st title
+				contentStream.addRect(BORDER_LEFT, PAGESIZE.getUpperRightY() - BORDER_TOP - 5,
+						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
+			} else {
+				// for 2st title
+				contentStream.addRect(BORDER_LEFT, (PAGESIZE.getUpperRightY() / 2)-5,
+						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
+			}
+
+			contentStream.setNonStrokingColor(47, 72, 110); // blue
 			contentStream.fill();
 
 			contentStream.beginText();
@@ -100,8 +111,11 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 				contentStream.newLineAtOffset(BORDER_LEFT, PAGESIZE.getUpperRightY() / 2);
 
 			}
-			contentStream.setLeading(15);
+			contentStream.setLeading(20);
+
+			contentStream.setNonStrokingColor(Color.white);
 			insertText(acGr.getTitle(), FontType.H1);
+			contentStream.setNonStrokingColor(Color.black);
 
 			for (ActivityEntry entry : acGr.getEntries()) {
 				contentStream.newLine();
@@ -158,7 +172,6 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 	@Override
 	public void setFont(FontType t) throws Exception {
-		contentStream.setNonStrokingColor(0, 0, 0);
 
 		switch (t) {
 		case H1:

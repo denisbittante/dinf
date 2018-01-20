@@ -1,6 +1,10 @@
 package ch.ffhs.dinf.osre.itext.service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -8,6 +12,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.xobject.PdfImageXObject;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
@@ -130,12 +135,21 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 			cell10.add(new Paragraph(group.getEmail()));
 
 			Cell cell11 = new Cell();
-			ImageData create = null;
+			PdfImageXObject create = null;
 			if (group.getGender() == "m") {
-				create = ImageDataFactory.create(getClass().getResource("/male.jpg").getPath());
+
+				ImageData imgData = ImageDataFactory.create(loadImageByte("/male.jpg"), true);
+				/* Wrapping image data in a PdfImageXObject */
+				create = new PdfImageXObject(imgData);
+
+				// create =
+				// ImageDataFactory.create(getClass().getResource("/male.jpg").getPath());
 
 			} else {
-				create = ImageDataFactory.create(getClass().getResource("/female.jpg").getPath());
+
+				ImageData imgData = ImageDataFactory.create(loadImageByte("/female.jpg"), true);
+				/* Wrapping image data in a PdfImageXObject */
+				create = new PdfImageXObject(imgData);
 
 			}
 			Image element = new Image(create);
@@ -158,6 +172,18 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 		document.add(table);
 
+	}
+
+	private byte[] loadImageByte(String imageFilename) {
+		byte[] dataBytes = null;
+		try {
+			InputStream is = getClass().getResourceAsStream(imageFilename);
+			dataBytes = new byte[is.available()];
+			is.read(dataBytes);
+		} catch (IOException ex) {
+			Logger.getLogger(Szenario3Impl.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return dataBytes;
 	}
 
 	private void setMetadata() {

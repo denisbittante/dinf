@@ -2,17 +2,22 @@ package ch.ffhs.dinf.osre.apachepdf.service;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
 import ch.ffhs.dinf.osre.engine.test.TestUtils;
 
+/**
+ * 
+ * Test Suit for Apache PDF Box
+ * 
+ * @author Denis Bittante
+ *
+ */
 public class PdfServiceImplTest {
 
 	PdfServiceImpl testee = new PdfServiceImpl();
 
-	@Ignore
 	@Test
 	public void testScenario1() throws IOException {
 
@@ -28,7 +33,6 @@ public class PdfServiceImplTest {
 
 	}
 
-	@Ignore
 	@Test
 	public void testScenario3() throws IOException {
 

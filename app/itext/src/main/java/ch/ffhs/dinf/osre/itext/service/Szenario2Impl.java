@@ -85,8 +85,8 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 
 		Utils utils = new Utils();
 
-		Color mainColor = new DeviceRgb(47, 72, 110);
-		Color subColor = new DeviceRgb(196, 134, 39);
+		Color mainColor = new DeviceRgb(47, 72, 110); // blue 
+		Color subColor = new DeviceRgb(196, 134, 39); // gold
 
 		for (ActivityGroup group : getModel().getGroup()) {
 
