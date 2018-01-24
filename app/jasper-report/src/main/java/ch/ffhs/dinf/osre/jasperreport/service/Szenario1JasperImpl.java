@@ -4,17 +4,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import ch.ffhs.dinf.osre.engine.AbstractScenario;
-import ch.ffhs.dinf.osre.engine.Scenario3;
-import ch.ffhs.dinf.osre.engine.api.ActivityEntry;
-import ch.ffhs.dinf.osre.engine.api.ActivityGroup;
-import ch.ffhs.dinf.osre.engine.api.Contact;
-import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
-import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario3;
+import ch.ffhs.dinf.osre.engine.Scenario1;
+import ch.ffhs.dinf.osre.engine.api.ActivityDetails;
+import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario1;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -24,11 +19,11 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
-public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
+public class Szenario1JasperImpl extends AbstractScenario<PdfRequestScenario1> implements Scenario1 {
 
 	ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 
-	public Szenario3Impl(String name, String description) {
+	public Szenario1JasperImpl(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}
@@ -71,7 +66,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 	@Override
 	protected void buildPdf() throws Exception {
-		String reportSrcFile = "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario3.jrxml";
+		String reportSrcFile = "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario1.jrxml";
 		JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 
 		createHashMapInput();
@@ -92,30 +87,30 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		exporter.setConfiguration(configuration);
 
 		exporter.exportReport();
+
 	}
 
 	private void createHashMapInput() {
 
-		PdfRequestScenario3 model = getModel();
+		PdfRequestScenario1 model = getModel();
 
-		List<Contact> data = model.getContacts();
-
-		for (Contact contact : data) {
-
+		ArrayList<ActivityDetails> data = model.getData();
+		for (ActivityDetails activityDetails : data) {
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			Field[] declaredFields = contact.getClass().getDeclaredFields();
-			for (Field field : declaredFields) {
 
+			Field[] declaredFields = activityDetails.getClass().getDeclaredFields();
+			for (Field field : declaredFields) {
 				field.getName();
 				try {
 
-					String value = (String) contact.getClass().getDeclaredMethod(
+					String value = (String) activityDetails.getClass().getDeclaredMethod(
 							"get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1), null)
-							.invoke(contact, null);
+							.invoke(activityDetails, null);
 
 					parameters.put(field.getName(), value);
 
-					System.out.println("<field name=\"" + field.getName() + "\" class=\"java.lang.String\"/>");
+					// System.out.println("<field name=\""+field.getName()+"\"
+					// class=\"java.lang.String\"/>");
 					// System.out.println(value);
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -139,4 +134,5 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 		}
 
 	}
+
 }

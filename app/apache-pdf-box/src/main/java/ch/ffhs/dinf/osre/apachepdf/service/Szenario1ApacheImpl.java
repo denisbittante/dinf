@@ -1,39 +1,36 @@
 package ch.ffhs.dinf.osre.apachepdf.service;
 
-import java.awt.Color;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import ch.ffhs.dinf.osre.apachepdf.service.Utils.Style;
 import ch.ffhs.dinf.osre.engine.AbstractScenario;
-import ch.ffhs.dinf.osre.engine.Scenario2;
-import ch.ffhs.dinf.osre.engine.api.ActivityEntry;
-import ch.ffhs.dinf.osre.engine.api.ActivityGroup;
-import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
+import ch.ffhs.dinf.osre.engine.Scenario1;
+import ch.ffhs.dinf.osre.engine.api.ActivityDetails;
+import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario1;
 
-public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> implements Scenario2 {
+public class Szenario1ApacheImpl extends AbstractScenario<PdfRequestScenario1> implements Scenario1 {
 
 	private static final int BORDER_BOTTOM = 30;
 	private static final int BORDER_LEFT = 25;
 	private static final int BORDER_RIGHT = 25;
 	private static final int BORDER_TOP = 50;
-
-	private static final int COL_1 = 50;
-	private static final int COL_2 = 350;
-	private static final int COL_3 = 100;
-
 	private PDPageContentStream contentStream;
 	private PDDocument document;
 	private static final PDRectangle PAGESIZE = PDRectangle.A4;
+
 	private PDDocumentInformation pdd;
 
-	public Szenario2Impl(String name, String description) {
-		super(name, description);
+	public Szenario1ApacheImpl(String name, String string) {
+		super(name, string);
 	}
 
 	@Override
@@ -51,13 +48,13 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 			// Adding the blank page to the document
 			document.addPage(blankPage);
 		}
-
 		setAuthor();
 		setSubject();
 		createChapters();
 		setSubject();
 		setKeywords();
 		setTitle();
+
 		document.save(getTempfile());
 		document.close();
 
@@ -68,91 +65,84 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 	}
 
 	public int countPagesByInput() {
-		int size = getModel().getGroup().size();
-		float mod = size % 2;
 
-		int countpages = size / 2;
-		if (mod > 0) {
-			countpages++;
+		if (getModel() != null) {
+			return getModel().getData().size();
+		} else {
+			return 0;
 		}
-
-		return countpages;
-
 	}
 
 	@Override
 	public void createChapters() throws Exception {
 
-		for (int i = 0; i < getModel().getGroup().size(); i++) {
+		for (int i = 0; i < countPagesByInput(); i++) {
 
-			ActivityGroup acGr = getModel().getGroup().get(i);
-			PDPage page = document.getPage(i / 2);
+			ActivityDetails aD = getModel().getData().get(i);
 
-			contentStream = new PDPageContentStream(document, page, AppendMode.APPEND, false);
+			PDPage page = document.getPage(i);
 
-			if (i % 2 == 0) {
-				// for 1st title
-				contentStream.addRect(BORDER_LEFT, PAGESIZE.getUpperRightY() - BORDER_TOP - 5,
-						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
-			} else {
-				// for 2st title
-				contentStream.addRect(BORDER_LEFT, (PAGESIZE.getUpperRightY() / 2)-5,
-						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
-			}
-
-			contentStream.setNonStrokingColor(47, 72, 110); // blue
-			contentStream.fill();
+			contentStream = new PDPageContentStream(document, page);
 
 			contentStream.beginText();
 
-			if (i % 2 == 0) {
-				contentStream.newLineAtOffset(BORDER_LEFT, PAGESIZE.getUpperRightY() - BORDER_TOP);
-			} else {
-				contentStream.newLineAtOffset(BORDER_LEFT, PAGESIZE.getUpperRightY() / 2);
-
-			}
-			contentStream.setLeading(20);
-
-			contentStream.setNonStrokingColor(Color.white);
-			insertText(acGr.getTitle(), FontType.H1);
-			contentStream.setNonStrokingColor(Color.black);
-
-			for (ActivityEntry entry : acGr.getEntries()) {
-				contentStream.newLine();
-
-				if (entry.isSubtitle()) {
-					insertText(entry.getTitle(), FontType.H3);
-
-				} else {
-					insertText(entry.getTime(), FontType.bold_italic, COL_1);
-					contentStream.newLineAtOffset(COL_1, 0f);
-					insertText(entry.getTitle(), FontType.normal, COL_2);
-					contentStream.newLineAtOffset(COL_2, 0f);
-					insertText(entry.getPerson(), FontType.italic, COL_3);
-					contentStream.newLineAtOffset(-(COL_1 + COL_2), 0f);
-				}
-			}
-			contentStream.newLineAtOffset(0f, 0f);
+			contentStream.newLineAtOffset(BORDER_LEFT, PDRectangle.A4.getUpperRightY() - BORDER_TOP);
+			contentStream.setLeading(15);
+			// Adding text in the form of string
+			insertText(aD.getTitle(), FontType.H1);
 			contentStream.newLine();
-			insertText(acGr.getFooter(), FontType.small);
+			contentStream.newLine();
+			insertText(aD.getDatumVon(), FontType.H2);
+			insertText(" - ", FontType.H2);
+			insertText(aD.getDatumBis(), FontType.H2);
+			contentStream.newLine();
+			insertText(aD.getDescription());
+			contentStream.newLine();
+
+			insertText("Ort", FontType.bold);
+			contentStream.newLine();
+			insertText(aD.getPlace());
+			contentStream.newLine();
+			insertText("Verantwortlicher ", FontType.bold);
+			contentStream.newLine();
+			insertText(aD.getIncharge());
+			contentStream.newLine();
+			insertText("Helfer ", FontType.bold);
+			contentStream.newLine();
+			insertText(aD.getHelper());
+			contentStream.newLine();
+			contentStream.endText();
+			// Footer
+
+			contentStream.beginText();
+			contentStream.newLineAtOffset(25, PAGESIZE.getLowerLeftY() + BORDER_BOTTOM);
+			insertText("Erstellt von : ", FontType.small);
+			insertText(aD.getAuthor(), FontType.small);
+			contentStream.endText();
+
+			contentStream.beginText();
+			contentStream.newLineAtOffset(PAGESIZE.getUpperRightX() / 2, PAGESIZE.getLowerLeftY() + BORDER_BOTTOM);
+			insertText(i + 1 + "/", FontType.small);
+			insertText(String.valueOf(countPagesByInput()), FontType.small);
+			contentStream.endText();
+
+			contentStream.beginText();
+			String erstelldatum = new Date().toString();
+			contentStream.newLineAtOffset(PAGESIZE.getUpperRightX() - 150, PAGESIZE.getLowerLeftY() + BORDER_BOTTOM);
+			insertText(erstelldatum, FontType.small);
 			contentStream.endText();
 			contentStream.close();
 		}
 
 	}
 
-	@Override
-	public void setTitle() {
-		pdd.setTitle(SUBJECT);
+	private void insertText(String string) throws Exception {
+		insertText(string, FontType.normal);
 	}
 
 	private void insertText(String string, FontType t) throws Exception {
-		insertText(string, t, 500);
-	}
-
-	private void insertText(String string, FontType t, float columnsize) throws Exception {
 		setFont(t);
-		String[] strings = Utils.makeSubtextByFontSize(string, Style.valueOf(t.name()).fontsize, columnsize,
+		String[] strings = Utils.makeSubtextByFontSize(string, Style.valueOf(t.name()).fontsize, 500,
 				Style.valueOf(t.name()).font);
 
 		for (int i = 0; i < strings.length; i++) {
@@ -167,12 +157,10 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 	@Override
 	public void setAuthor() {
 		pdd.setAuthor(AUTHOR);
-
 	}
 
 	@Override
 	public void setFont(FontType t) throws Exception {
-
 		switch (t) {
 		case H1:
 			contentStream.setFont(Style.H1.font, Style.H1.fontsize);
@@ -209,6 +197,11 @@ public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> impleme
 	@Override
 	public void setSubject() {
 		pdd.setSubject(SUBJECT);
+	}
+
+	@Override
+	public void setTitle() {
+		pdd.setTitle(SUBJECT);
 
 	}
 

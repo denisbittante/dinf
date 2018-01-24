@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -21,18 +20,16 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
 
 import ch.ffhs.dinf.osre.engine.AbstractScenario;
-import ch.ffhs.dinf.osre.engine.Scenario1;
-import ch.ffhs.dinf.osre.engine.Scenario1.FontType;
-import ch.ffhs.dinf.osre.engine.api.ActivityGroup;
+import ch.ffhs.dinf.osre.engine.Scenario3;
 import ch.ffhs.dinf.osre.engine.api.Contact;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario3;
 import ch.ffhs.dinf.osre.itext.service.Utils.Style;
 
-public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> implements Scenario1 {
+public class Szenario3ITextImpl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
 
 	private PdfDocument pdfDoc;
 
-	public Szenario3Impl(String name, String description) {
+	public Szenario3ITextImpl(String name, String description) {
 		super(name, description);
 	}
 
@@ -181,7 +178,7 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 			dataBytes = new byte[is.available()];
 			is.read(dataBytes);
 		} catch (IOException ex) {
-			Logger.getLogger(Szenario3Impl.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Szenario3ITextImpl.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return dataBytes;
 	}

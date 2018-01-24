@@ -16,7 +16,7 @@ import ch.ffhs.dinf.osre.engine.test.TestUtils;
  */
 public class PdfServiceImplTest {
 
-	PdfServiceImpl testee = new PdfServiceImpl();
+	PdfServiceApacheImpl testee = new PdfServiceApacheImpl();
 
 	@Test
 	public void testScenario1() throws IOException {

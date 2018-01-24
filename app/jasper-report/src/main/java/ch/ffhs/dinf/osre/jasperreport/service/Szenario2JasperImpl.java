@@ -18,11 +18,11 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
-public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> implements Scenario2 {
+public class Szenario2JasperImpl extends AbstractScenario<PdfRequestScenario2> implements Scenario2 {
 
 	ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();;
 
-	public Szenario2Impl(String name, String description) {
+	public Szenario2JasperImpl(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}

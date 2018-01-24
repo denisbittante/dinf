@@ -19,11 +19,11 @@ import ch.ffhs.dinf.osre.engine.api.ActivityGroup;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
 import ch.ffhs.dinf.osre.itext.service.Utils.Style;
 
-public class Szenario2Impl extends AbstractScenario<PdfRequestScenario2> implements Scenario2 {
+public class Szenario2ITextImpl extends AbstractScenario<PdfRequestScenario2> implements Scenario2 {
 
 	private PdfDocument pdfDoc;
 
-	public Szenario2Impl(String name, String description) {
+	public Szenario2ITextImpl(String name, String description) {
 		super(name, description);
 	}
 

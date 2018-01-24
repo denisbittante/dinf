@@ -22,7 +22,7 @@ import ch.ffhs.dinf.osre.engine.api.Contact;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario3;
 
-public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
+public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
 
 	private static final int BORDER_BOTTOM = 30;
 	private static final int BORDER_LEFT = 25;
@@ -34,16 +34,16 @@ public class Szenario3Impl extends AbstractScenario<PdfRequestScenario3> impleme
 
 	private int[] COL_SIZE = new int[] { 50, 50, 75, 30, 70, 70, 70, 40, 180, 120, 37 };
 
-	String malePath = Szenario3Impl.class.getResource("male.jpg").getPath();
+	String malePath = Szenario3ApacheImpl.class.getResource("male.jpg").getPath();
 
-	String femalePath = Szenario3Impl.class.getResource("female.jpg").getPath();
+	String femalePath = Szenario3ApacheImpl.class.getResource("female.jpg").getPath();
 
 	private PDPageContentStream contentStream;
 	private PDDocument document;
 	private static final PDRectangle PAGESIZE = new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth());;
 	private PDDocumentInformation pdd;
 
-	public Szenario3Impl(String name, String description) {
+	public Szenario3ApacheImpl(String name, String description) {
 		super(name, description);
 	}
 
