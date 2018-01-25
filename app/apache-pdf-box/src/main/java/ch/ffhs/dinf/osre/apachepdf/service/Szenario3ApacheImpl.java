@@ -1,6 +1,13 @@
 package ch.ffhs.dinf.osre.apachepdf.service;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -8,18 +15,13 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDPageFitRectangleDestination;
-import org.apache.pdfbox.text.TextPosition;
 
 import ch.ffhs.dinf.osre.apachepdf.service.Utils.Style;
 import ch.ffhs.dinf.osre.engine.AbstractScenario;
 import ch.ffhs.dinf.osre.engine.Scenario3;
-import ch.ffhs.dinf.osre.engine.Scenario1.FontType;
-import ch.ffhs.dinf.osre.engine.api.ActivityEntry;
-import ch.ffhs.dinf.osre.engine.api.ActivityGroup;
 import ch.ffhs.dinf.osre.engine.api.Contact;
-import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario2;
 import ch.ffhs.dinf.osre.engine.api.PdfRequestScenario3;
 
 public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> implements Scenario3 {
@@ -33,10 +35,6 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 	private static final int ROWHEIGHT = 20;
 
 	private int[] COL_SIZE = new int[] { 50, 50, 75, 30, 70, 70, 70, 40, 180, 120, 37 };
-
-	String malePath = Szenario3ApacheImpl.class.getResource("male.jpg").getPath();
-
-	String femalePath = Szenario3ApacheImpl.class.getResource("female.jpg").getPath();
 
 	private PDPageContentStream contentStream;
 	private PDDocument document;
@@ -166,7 +164,7 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 
 			contentStream.endText();
 
-			addMaleGenderSign(i % DATAROWSPERPAGE);
+			addGenderSign(i % DATAROWSPERPAGE);
 
 			lowerY = drawHorizontalLines(i % DATAROWSPERPAGE);
 			drawVerticalLine(i % DATAROWSPERPAGE, lowerY);
@@ -224,14 +222,21 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 		}
 	}
 
-	private void addMaleGenderSign(int i) throws IOException {
+	private void addGenderSign(int i) throws IOException {
 
 		PDImageXObject pdImage = null;
 		if (getModel().getContacts().get(i).getGender() == "m") {
-			pdImage = PDImageXObject.createFromFile(malePath, document);
+			final byte[] image = loadImageByte("/male.jpg");
+			ByteArrayInputStream bais = new ByteArrayInputStream(image);
+			BufferedImage bim = ImageIO.read(bais);
+			pdImage = LosslessFactory.createFromImage(document, bim);
 
 		} else {
-			pdImage = PDImageXObject.createFromFile(femalePath, document);
+
+			final byte[] image = loadImageByte("/female.jpg");
+			ByteArrayInputStream bais = new ByteArrayInputStream(image);
+			BufferedImage bim = ImageIO.read(bais);
+			pdImage = LosslessFactory.createFromImage(document, bim);
 
 		}
 
@@ -308,6 +313,18 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 	public void setSubject() {
 		pdd.setSubject(SUBJECT);
 
+	}
+
+	private byte[] loadImageByte(String imageFilename) {
+		byte[] dataBytes = null;
+		try {
+			InputStream is = getClass().getResourceAsStream(imageFilename);
+			dataBytes = new byte[is.available()];
+			is.read(dataBytes);
+		} catch (IOException ex) {
+			Logger.getLogger(Szenario3ApacheImpl.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return dataBytes;
 	}
 
 }
