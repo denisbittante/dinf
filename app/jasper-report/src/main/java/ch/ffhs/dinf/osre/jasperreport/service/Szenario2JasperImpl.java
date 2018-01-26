@@ -1,5 +1,6 @@
 package ch.ffhs.dinf.osre.jasperreport.service;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,19 +30,25 @@ public class Szenario2JasperImpl extends AbstractScenario<PdfRequestScenario2> i
 
 	@Override
 	protected void buildPdf() throws Exception {
-		String masterReportFileName = "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario2.jrxml";
+		// String masterReportFileName =
+		// "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario2.jrxml";
+		// String subReportFileName =
+		// "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario2Subreport.jrxml";
 
-		String subReportFileName = "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario2Subreport.jrxml";
+		InputStream masterReportStream = getClass().getResourceAsStream("/Scenario2.jrxml");
+		// InputStream subReportStream =
+		// getClass().getResourceAsStream("/Scenario2Subreport.jrxml");
 
-		JasperReport jasperReport = JasperCompileManager.compileReport(masterReportFileName);
-		JasperReport jasperSubReport = JasperCompileManager.compileReport(subReportFileName);
+		JasperReport jasperReport = JasperCompileManager.compileReport(masterReportStream);
+		// JasperReport jasperSubReport =
+		// JasperCompileManager.compileReport(subReportStream);
 
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("subreportParameter", jasperSubReport);
+		// Map<String, Object> parameters = new HashMap<String, Object>();
+		// parameters.put("subreportParameter", jasperSubReport);
 
 		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(getModel().getGroup());
 
-		JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, beanColDataSource);
+		JasperPrint print = JasperFillManager.fillReport(jasperReport, null, beanColDataSource);
 
 		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 		configuration.setMetadataTitle(FILENAME);

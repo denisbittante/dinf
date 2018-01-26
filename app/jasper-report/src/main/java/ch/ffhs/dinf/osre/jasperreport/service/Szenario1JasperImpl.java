@@ -66,8 +66,10 @@ public class Szenario1JasperImpl extends AbstractScenario<PdfRequestScenario1> i
 
 	@Override
 	protected void buildPdf() throws Exception {
-		String reportSrcFile = "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario1.jrxml";
-		JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
+		// String reportSrcFile =
+		// "C:\\sandbox\\dinf\\dinf\\app\\jasper-report\\src\\main\\resources\\Scenario1.jrxml";
+		JasperReport jasperReport = JasperCompileManager
+				.compileReport(getClass().getResourceAsStream("/Scenario1.jrxml"));
 
 		createHashMapInput();
 
