@@ -79,7 +79,7 @@ public class Szenario1ITextImpl extends AbstractScenario<PdfRequestScenario1> im
 		// Closing the document
 		document.close();
 
-		System.out.println("PDF Created");
+		//System.out.println("PDF Created");
 
 	}
 
@@ -144,7 +144,7 @@ public class Szenario1ITextImpl extends AbstractScenario<PdfRequestScenario1> im
 
 			//@formatter:off
 			float y  = (pageSize.getBottom() + doc.getBottomMargin())- (pageSize.getTop() + doc.getTopMargin()) + 40;
-			System.out.println( "y : "+ y);
+			//System.out.println( "y : "+ y);
 			//y =-800f;
 			float halfpage = (pageSize.getRight() - doc.getRightMargin() - (pageSize.getLeft() + doc.getLeftMargin())) / 2 ;
 			canvas.moveText(halfpage, pageSize.getTop() - doc.getTopMargin() + 10)

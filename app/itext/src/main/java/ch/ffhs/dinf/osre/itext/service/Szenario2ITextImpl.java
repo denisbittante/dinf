@@ -77,7 +77,7 @@ public class Szenario2ITextImpl extends AbstractScenario<PdfRequestScenario2> im
 		// Closing the document
 		document.close();
 
-		System.out.println("PDF Created");
+	//	System.out.println("PDF Created");
 
 	}
 

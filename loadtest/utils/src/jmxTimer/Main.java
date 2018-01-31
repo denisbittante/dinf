@@ -8,7 +8,7 @@ public class Main {
 		String readFile = readFileExample2.readFile();
 		SchedulerChanger changer = new SchedulerChanger();
 		String findAndReplaceSchedule = changer.findAndReplaceSchedule(readFile);
-		System.out.println(findAndReplaceSchedule);
+	//	System.out.println(findAndReplaceSchedule);
 
 		WriteToFileExample.writeFile(findAndReplaceSchedule);
 

@@ -58,9 +58,6 @@ public class Szenario1ApacheImpl extends AbstractScenario<PdfRequestScenario1> i
 		document.save(getTempfile());
 		document.close();
 
-		System.out.println("PDF created");
-
-		// Closing the document
 
 	}
 

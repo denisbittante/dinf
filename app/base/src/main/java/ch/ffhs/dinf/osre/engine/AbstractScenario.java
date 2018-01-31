@@ -46,6 +46,8 @@ public abstract class AbstractScenario<M> {
 		} catch (Exception e) {
 			this.pdf.setStatus("nok");
 			e.printStackTrace();
+		} finally {
+			tryToDeleteTempFile();
 		}
 
 		// tryToDeleteTempFile();
@@ -104,14 +106,17 @@ public abstract class AbstractScenario<M> {
 	}
 
 	private void tryToDeleteTempFile() {
+		try {
 
-		if (getTempfile().exists()) {
-			getTempfile().delete();
-			if (!getTempfile().exists()) {
-				System.out.println("Deleted succsessfully !");
+			if (getTempfile().exists()) {
+				getTempfile().delete();
+				if (!getTempfile().exists()) {
+					System.out.println("Deleted succsessfully !");
+				}
 
 			}
-
+		} catch (Exception e) {
+			System.out.println("Delete file not successfull");
 		}
 
 	}

@@ -71,9 +71,6 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 		document.save(getTempfile());
 		document.close();
 
-		System.out.println("PDF created");
-
-		// Closing the document
 
 	}
 
@@ -196,7 +193,7 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 			strokeInitYHeight = -BORDER_TOP;
 		}
 		int lowerY = (int) (strokeInitYHeight + PAGESIZE.getUpperRightY() - (i * ROWHEIGHT));
-		System.out.println("lowY " + lowerY);
+		//System.out.println("lowY " + lowerY);
 		contentStream.moveTo(BORDER_RIGHT, lowerY);
 		contentStream.lineTo(PAGESIZE.getUpperRightX() - BORDER_LEFT, lowerY);
 		contentStream.stroke();

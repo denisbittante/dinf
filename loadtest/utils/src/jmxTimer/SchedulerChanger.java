@@ -1,16 +1,20 @@
 package jmxTimer;
 
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SchedulerChanger {
 
-	private double startTime = 1516975200000d;
+	GregorianCalendar cal = new GregorianCalendar(2018, GregorianCalendar.JANUARY , 28, 14, 55, 00);
+	private double startTime = 1517091000000d;
 	/// private float startTime = 9999999999f;
-	private double runningTime = 10d * 60d * 1000d;
-	private double breakTime = 10d * 60d * 1000d;
+	private double runningTime = 5d * 60d * 1000d;
+	private double breakTime = 2d * 60d * 1000d;
 
 	public String findAndReplaceSchedule(String program) {
+
+		startTime = (double) cal.getTimeInMillis();
 
 		String replaceStart = replaceStart(program);
 		return replaceEnd(replaceStart);

@@ -61,9 +61,7 @@ public class Szenario2ApacheImpl extends AbstractScenario<PdfRequestScenario2> i
 		document.save(getTempfile());
 		document.close();
 
-		System.out.println("PDF created");
-
-		// Closing the document
+		
 
 	}
 
@@ -96,7 +94,7 @@ public class Szenario2ApacheImpl extends AbstractScenario<PdfRequestScenario2> i
 						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
 			} else {
 				// for 2st title
-				contentStream.addRect(BORDER_LEFT, (PAGESIZE.getUpperRightY() / 2)-5,
+				contentStream.addRect(BORDER_LEFT, (PAGESIZE.getUpperRightY() / 2) - 5,
 						PAGESIZE.getUpperRightX() - BORDER_RIGHT - BORDER_LEFT, 25);
 			}
 
