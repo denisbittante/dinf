@@ -6,13 +6,12 @@ import java.io.IOException;
 
 public class ReadFileExample {
 
-	private static final String FILENAME = "C:\\sandbox\\dinf\\dinf\\loadtest\\jmeter\\testingTime.jmx";
 
-	public String readFile() {
+	public String readFile(String filename) {
 
 		StringBuffer buffer = new StringBuffer();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 
 			String sCurrentLine;
 

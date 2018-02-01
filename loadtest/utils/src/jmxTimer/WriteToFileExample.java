@@ -6,11 +6,10 @@ import java.io.IOException;
 
 public class WriteToFileExample {
 
-	private static final String FILENAME = "C:\\sandbox\\dinf\\dinf\\loadtest\\jmeter\\testingTime-CHANGED.jmx";
 
-	public static void writeFile(String content) {
+	public static void writeFile(String content, String filename) {
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
 
 			bw.write(content);
 		//	System.out.println("Done");

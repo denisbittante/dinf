@@ -6,13 +6,17 @@ import java.util.regex.Pattern;
 
 public class SchedulerChanger {
 
-	GregorianCalendar cal = new GregorianCalendar(2018, GregorianCalendar.JANUARY , 28, 14, 55, 00);
-	private double startTime = 1517091000000d;
-	/// private float startTime = 9999999999f;
-	private double runningTime = 5d * 60d * 1000d;
-	private double breakTime = 2d * 60d * 1000d;
+	private double startTime ;
+	private final double runningTime;
+	private final double breakTime;
 
-	public String findAndReplaceSchedule(String program) {
+	public SchedulerChanger(double runningTime, double breakTime) {
+		super();
+		this.runningTime = runningTime;
+		this.breakTime = breakTime;
+	}
+
+	public String findAndReplaceSchedule(String program, GregorianCalendar cal) {
 
 		startTime = (double) cal.getTimeInMillis();
 
