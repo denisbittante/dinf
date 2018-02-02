@@ -617,7 +617,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;data\&quot;: [&quot;);
@@ -1305,7 +1305,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int maxgroup = 50;
+int maxgroup = 15;
 int maxentry = 5;
 Random random = new Random();
 
@@ -1967,7 +1967,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;contacts\&quot;: [&quot;);
@@ -2816,7 +2816,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;data\&quot;: [&quot;);
@@ -3505,7 +3505,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int maxgroup = 50;
+int maxgroup = 15;
 int maxentry = 5;
 Random random = new Random();
 
@@ -4167,7 +4167,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;contacts\&quot;: [&quot;);
@@ -4918,7 +4918,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;data\&quot;: [&quot;);
@@ -5558,7 +5558,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int maxgroup = 50;
+int maxgroup = 15;
 int maxentry = 5;
 Random random = new Random();
 
@@ -6220,7 +6220,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="script">StringBuilder result = new StringBuilder();
 String newline = System.getProperty(&quot;line.separator&quot;);
-int max = 100;
+int max = 30;
 Random random = new Random();
 
 result.append(&quot;{\&quot;contacts\&quot;: [&quot;);
@@ -6503,7 +6503,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">D:\Java-Entwicklung\apache-jmeter-3.3\bin\testlog-1.-01-22_17_sec.jtl</stringProp>
+        <stringProp name="filename">C:\sandbox\dinf\dinf\loadtest\jmeter\testlog--2.-01-23_29_38.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
@@ -6539,7 +6539,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">D:\Java-Entwicklung\apache-jmeter-3.3\bin\testlog-1.-01-22_17_sec.jtl</stringProp>
+        <stringProp name="filename">C:\sandbox\dinf\dinf\loadtest\jmeter\testlog--2.-01-23_29_38.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
@@ -6575,7 +6575,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">D:\Java-Entwicklung\apache-jmeter-3.3\bin\Jasper-Sz-1a-aggregation.csv</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
@@ -6611,7 +6611,7 @@ vars.put(&quot;json&quot;, result.toString());</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">D:\Java-Entwicklung\apache-jmeter-3.3\bin\Jasper-Sz-1a-aggregation.csv</stringProp>
+        <stringProp name="filename">C:\sandbox\dinf\dinf\loadtest\jmeter\testlog--2.-01-23_29_38.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
