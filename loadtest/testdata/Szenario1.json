@@ -1,0 +1,22 @@
+{"data": [
+      {
+      "title": "Aktivitts Titel Test 1 ",
+      "datumVon": "12.02.2017 16:00",
+      "datumBis": "12.02.2017 16:00",
+       "description": "Test ",
+      "place": "Musterstrasse 12\n9000 St. Gallen\nSchweiz",
+      "incharge": "Denis Bittante",
+      "helper": "Lars Hauser, Someoneelse",
+      "author": "Denis Bittante"
+   },
+      {
+      "title": "Aktivitaets Titel",
+      "datumVon": "12.02.2017 16:00",
+      "datumBis": "12.02.2017 16:00",
+       "description": "Test ",
+      "place": "Musterstrasse 12\n9000 St. Gallen\nSchweiz",
+      "incharge": "Denis Bittante",
+      "helper": "Lars Hauser, Someoneelse",
+      "author": "Denis Bittante"
+   }
+]}

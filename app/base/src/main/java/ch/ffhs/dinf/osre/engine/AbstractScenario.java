@@ -111,12 +111,11 @@ public abstract class AbstractScenario<M> {
 			if (getTempfile().exists()) {
 				getTempfile().delete();
 				if (!getTempfile().exists()) {
-					System.out.println("Deleted succsessfully !");
 				}
 
 			}
 		} catch (Exception e) {
-			System.out.println("Delete file not successfull");
+			System.err.println("Delete file NOT SUCCESSFUL!");
 		}
 
 	}

@@ -1,0 +1,237 @@
+{"group": [
+      {
+      "title": "21.2.12 Vortraege fuer diesen Tag",
+      "entries":       [
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:05",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": null,
+            "title": "Ein Untertitel",
+            "person": null,
+            "isSubtitle": true,
+            "subtitle": true
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         }
+      ],
+      "footer": "Special Information as Footnote"
+   },
+      {
+      "title": "21.2.12 Vortraege fuer diesen Tag",
+      "entries":       [
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:03",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": null,
+            "title": "Ein Untertitel",
+            "person": null,
+            "isSubtitle": true,
+            "subtitle": true
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:00",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:50",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": null,
+            "title": "Ein Untertitel",
+            "person": null,
+            "isSubtitle": true,
+            "subtitle": true
+         }
+      ],
+      "footer": "Special Information as Footnote"
+   },
+      {
+      "title": "21.2.12 Vortraege fuer diesen Tag",
+      "entries":       [
+                  {
+            "time": "19:00",
+            "title": "Ein Titel sehr langer titel und noch ein wort und noch ein wort",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:12",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": null,
+            "title": "Ein Untertitel",
+            "person": null,
+            "isSubtitle": true,
+            "subtitle": true
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": null,
+            "title": "Ein Untertitel",
+            "person": null,
+            "isSubtitle": true,
+            "subtitle": true
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         },
+                  {
+            "time": "19:25",
+            "title": "Ein Titel",
+            "person": "D.Bittante",
+            "isSubtitle": false,
+            "subtitle": false
+         }
+      ],
+      "footer": "Special Information as Footnote"
+   }
+]}

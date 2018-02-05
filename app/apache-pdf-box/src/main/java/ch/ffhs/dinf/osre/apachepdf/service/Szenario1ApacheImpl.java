@@ -34,7 +34,7 @@ public class Szenario1ApacheImpl extends AbstractScenario<PdfRequestScenario1> i
 	}
 
 	@Override
-	protected void buildPdf() throws Exception {
+	protected void buildPdf() {
 
 		// Creating PDF document object
 		document = new PDDocument();
@@ -48,16 +48,23 @@ public class Szenario1ApacheImpl extends AbstractScenario<PdfRequestScenario1> i
 			// Adding the blank page to the document
 			document.addPage(blankPage);
 		}
-		setAuthor();
-		setSubject();
-		createChapters();
-		setSubject();
-		setKeywords();
-		setTitle();
 
-		document.save(getTempfile());
-		document.close();
+		try {
 
+			setAuthor();
+			setSubject();
+			createChapters();
+			setSubject();
+			setKeywords();
+			setTitle();
+
+			document.save(getTempfile());
+		
+			document.close();
+		} catch (Exception e) {
+
+			System.err.println("Error:" + e.getMessage());
+		}
 
 	}
 

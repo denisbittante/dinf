@@ -61,6 +61,7 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 			document.addPage(blankPage);
 		}
 
+		try {
 		createChapters();
 		setAuthor();
 		setSubject();
@@ -70,7 +71,10 @@ public class Szenario3ApacheImpl extends AbstractScenario<PdfRequestScenario3> i
 
 		document.save(getTempfile());
 		document.close();
+		} catch (Exception e) {
 
+			System.err.println("Error:" + e.getMessage());
+		}
 
 	}
 

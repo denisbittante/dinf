@@ -52,16 +52,20 @@ public class Szenario2ApacheImpl extends AbstractScenario<PdfRequestScenario2> i
 			document.addPage(blankPage);
 		}
 
-		setAuthor();
-		setSubject();
-		createChapters();
-		setSubject();
-		setKeywords();
-		setTitle();
-		document.save(getTempfile());
-		document.close();
+		try {
+			setAuthor();
+			setSubject();
+			createChapters();
+			setSubject();
+			setKeywords();
+			setTitle();
+			document.save(getTempfile());
+			document.close();
 
-		
+		} catch (Exception e) {
+
+			System.err.println("Error:" + e.getMessage());
+		}
 
 	}
 

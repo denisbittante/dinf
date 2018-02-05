@@ -1,4 +1,4 @@
-package jmxTimer;
+package ch.ffhs.dinf.utils.jmx.time;
 
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
