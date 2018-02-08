@@ -1,15 +1,12 @@
 package ch.ffhs.dinf.osre.apachepdf.service;
 
-import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import ch.ffhs.dinf.osre.apachepdf.service.Utils.Style;
 import ch.ffhs.dinf.osre.engine.AbstractScenario;
