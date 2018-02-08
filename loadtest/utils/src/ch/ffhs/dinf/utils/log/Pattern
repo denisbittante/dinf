@@ -1,0 +1,11 @@
+Load Pattern:
+\d+\s([\d|\-\:|\w]+)\s[\d|\-\:|\w]+\s(\d+)\s[\w|\-]+\s[\d|\.]+\s\w+\s\w+\s[\w|/|\.]+\ssource=web.1 dyno=[\w|\.|-]{52} sample#load_avg_1m=(\d+\.\d{2}) sample#load_avg_5m=(\d+\.\d{2}) sample#load_avg_15m=(\d+\.\d{2})
+Parses:
+897718816782553090	2018-02-07T02:21:07	2018-02-07T02:21:07Z	1551721092	dinf-app	54.224.253.156	Syslog	Notice	heroku/web.1	source=web.1 dyno=heroku.86224918.b25bfdf0-f345-485d-bf1b-a8706475e364 sample#load_avg_1m=0.28 sample#load_avg_5m=0.70 sample#load_avg_15m=1.72 
+
+----
+R14 ErrorPattern:
+\d+\s([\d|\-\:|\w]+)\s[\d|\-\:|\w]+\s(\d+)\s[\w|\-]+\s[\d|\.]+\s\w+\s\w+\s[\w|/|\.]+\sError (R\d\d) [\(|A-Za-z\s\)]+
+
+Parses
+897723602546331664	2018-02-07T02:40:07	2018-02-07T02:40:08Z	1551721092	dinf-app	54.242.243.242	Syslog	Notice	heroku/web.1	Error R14 (Memory quota exceeded) 
