@@ -1,0 +1,212 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Prototyp}
+Um heraus zu finden welche der OSRE am performantesten ist, wurden drei Prototypen erstellt. Mit diesen soll erforscht werden, wie sich eine Applikation beim Einsatz der verschiedenen ORSE verhaltet. Es wurde darauf geachtet das der Prototyp nur genau die Komponenten besitzt die es für die Aufgabe benötigt.  
+
+Jeder Prototyp ist in zweiteilig , die Prototypen besitzen die gleiche REST-Schnittstelle welche die Anfragen entgegen nimmt. Die REST-Schnittstelle leitet diese Anfrage  an die entsprechende Implementationen weiter. Dort werden diese Anfragen in konkrete PDFs umgesetzt. Im folgenden werden die Grundlegenden Aspekten der Implementationen näher betrachtet. 
+
+
+\section{Schnittstelle}
+
+
+Die Schnittstelle wurde so implementiert, das eine \acrshort{http}-POST Anfrage entgegengenommen werden kann. Den Request-Body wird dem Interface '\texttt{PdfEngine}' weitergegeben. Dieses Interface wurde mithilfe der Spring-Annotation @Autowired injected. Damit besteht eine lose Koppelung der PDF-Implementation und der Schnittstelle gegen aussen. Dank dieser Aufstellung kann nun einfach eine beliebige Implementation aufgerufen werden.
+
+Die REST-Schnittstelle bietet die drei PDF-Szenarien über die Endpunkte /scenario1, /scenario2 und /scenario3 an.   
+
+\begin{lstlisting}[language=Java]
+@RestController("/")
+public class PdfServiceController {
+
+	@Autowired
+	private PdfEngine engine;
+
+	@RequestMapping(method = RequestMethod.POST, path = "scenario1")
+	public @ResponseBody PdfResponse scenario1(@RequestBody PdfRequestScenario1 req) {
+		return engine.createPdfSzenario1(req);
+	}
+     ...
+}
+\end{lstlisting}
+
+\subsection{Requests}
+Die Endpunkte werden mit den folgendend Post-Bodys angesprochen. 
+
+
+\textbf{Szenario 1}
+
+\begin{lstlisting}[language=json]
+{"data": [
+      {
+      "title":          "Titel Test",
+      "datumVon":       "12.02.2017 16:00",
+      "datumBis":       "12.02.2017 17:00",
+      "description":    "Eine Beschreibung",
+      "place":          "Musterstrasse 12\n888 Musterstadt\nSchweiz",
+      "incharge":       "Denis Bittante",
+      "helper":         "Lars Hauser, Max Muster",
+      "author":         "Denis Bittante"
+   }, ...
+]}
+
+
+\end{lstlisting}
+
+
+\textbf{Szenario 2}
+
+\begin{lstlisting}[language=json]
+{"group": [
+      {
+      "title":  "21.2.12 Vortraege fuer diesen Tag",
+      "entries":[ {
+            "time":         "19:00",
+            "title":        "Ein Titel",
+            "person":       "D.Bittante",
+            "isSubtitle":   false,
+            "subtitle":     false
+         },  ...
+      ],
+      "footer": "Special Information as Footnote"
+   }, ...
+      ]}
+
+
+\end{lstlisting}
+
+
+\textbf{Szenario 3}
+
+\begin{lstlisting}[language=json]
+{"contacts": [
+      {
+      "gender":     "m",
+      "name":       "Mustername",
+      "firstname":  "Max",
+      "address":    "Musterstrasse 12",
+      "zip":        "9000",
+      "place":      "Ort",
+      "tel":        "+41 55 555 55 55",
+      "mob":        "+41 55 555 55 55",
+      "birthday":   "2.2.1988",
+      "note":       "schlaue Notiz fuer diese Person",
+      "email":      "max.muster2000@gmx.ch"
+   }, ...
+]}
+
+
+\end{lstlisting}
+
+\begin{reference}{JSON Request}
+ Vollständige Request können unter \url{https://github.com/denisbittante/dinf/tree/master/loadtest/testdata} gefunden werden.
+\end{reference}
+ 
+
+
+\subsection{Response}
+Die Repsonses der REST-Schnittstelle wurden einfach gehalten, daher wird die OSRE und das Szenario angegeben und ob die Verarbeitung korrekt abgeschlossen wurde. Das generierte PDF ist als base64 encodiert und als Attribut 'file' in der Response zu finden. 
+\begin{lstlisting}[language=json]
+{
+   "name": "ApachePdfBox",
+   "description": "Szenario 1",
+   "file": "JVBERi0xLjQKJfb ... hyZWYKMTc2NAolJUVPRgo=",
+   "status": "ok"
+}
+
+\end{lstlisting}
+
+
+
+
+\section{PDF Generierung}
+
+Beim Injecten des Interfaces PDFEngine werden je nach Build eines der drei Implementationen instanziert (siehe Abbildung \ref{figure:pdfEngineImpl}). Jeder dieser Klassen hat alle drei Szenarien zu implementieren.  
+
+
+\begin{figure}[h]
+ 
+\includegraphics[width=\textwidth ]{pic/uml/PdfEngineImplemntierung.jpg}
+ \caption{UML PDFEngine Implementierungen}
+ \label{figure:pdfEngineImpl}
+\end{figure}
+
+Die einzelne Szenarien wurden ebenfalls als Interfaces deklariert damit jedes dieser Szenarios nicht anders oder nur teilweise implementiert wird. Als Basis-Klasse wurde die AbstractScenario-Klasse implementiert, diese regelt den Aufbau und wie die Temporären Files auf dem System abgelegt werden und diese wieder abgeräumt werden. Diese abstrakte Klasse übernimmt ebenfalls den Aufbau und und das Handling des PdfRequest als Business-Model. Dieses Model steht jeder Implementation über die Methode getModel zur Verfügung.   
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth ]{pic/uml/SzenarioImplementation.jpg}
+ \caption{UML Szenario Implementierungen}
+ \label{figure:szenImpl}
+\end{figure}
+
+
+
+\subsection{Build / Deployment}
+
+Die einzelnen Jars mit den gewünschten implementation können mittels Maven gebildet werden dazu wurden für jedes Produkt ein Profil eingerichtet. Dafür muss das Projekt vollständig gebildet werden, damit die einzelnen Implementationen als Archiv im Maven Repository erreichbar sind und anschliessend kann der REST-Service gebildetet und gestartet werden.  
+
+\begin{lstlisting}[language=command.com]
+
+
+REM Bildet alle Maven Module 
+cd ../dinf/app/ 
+mvn clean install 
+
+REM  Bildet den RestService mit gewuenschter OSRE Implementation     
+cd ../dinf/app/rest-springboot/
+
+mvn clean install -Pitext
+REM (oder)
+mvn clean install -Pjasper
+REM (oder)
+mvn clean install -Ppdfbox
+\end{lstlisting}
+
+
+Das generierte Jar kann über den heroku Komando ebenfalls über die Console deployed werden. Das der Stand des gewünschten Dyno meist nicht bekannt ist wurde nach dem Deployment auch den Dyno neu gestartet. 
+
+\begin{lstlisting}[language=command.com]
+
+REM Deployed hier denn service mit der pdfbox implementation auf den Dyno 'dinf-app'
+heroku deploy:jar  target\rest-service-pdfbox.jar --app dinf-app
+
+REM Startet den Dyno namens 'dinf-app' erneut
+heroku restart --app dinf-app
+
+
+
+\end{lstlisting}
+
+\subsection{Technische Details}
+
+Folgende technischen Eckdaten sind in diesem Experiment  wichtig um die gleichen Performance-Ergebnisse erzielen zu könenn. 
+
+Es wurden folgene Versionen genutzt: 
+
+
+\begin{table}[h]
+\label{softversion}
+\begin{tabular}{ll}
+ Software          & Version   \\ \hline
+Java        &      SE 1.8   X      \\
+Spring Boot &         1.5.8.RELEASE        \\
+
+iText        &        7.1.0  \\
+Apache PDFBox - Core &  2.0.1 \\
+Apache PDFBox - fontbox & 2.0.0 \\
+Apache PDFBox - jempbox & 1.8.11 \\
+Apache PDFBox - xmpbox & 2.0.0 \\
+Apache PDFBox - preflight & 2.0.0 \\
+Apache PDFBox - pdfbox-tools & 2.0.0 \\
+JasperReport & 6.4.3 \\
+JasperReport - fonts & 4.0.0 \\
+
+
+\end{tabular}
+\caption{Software Versionen}
+\end{table}
+
+
+
+
+\end{document}

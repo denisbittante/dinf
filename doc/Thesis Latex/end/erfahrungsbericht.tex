@@ -1,0 +1,67 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Fazit}
+
+\section{Evaluation}
+
+
+% Meine Erkenntnisse
+
+\subsection{Usablity}
+
+\subsubsection{Jasper Report}
+
+Probleme mit Bold, iReport zeigt es richtig an aber es wird nicht in die PDFs übernommen. 
+iReport sehr gut gelöst, einfache Handhabung und gute Unterstützung für die Erstellung der Templates. 
+Precompile Reports - jasper files 
+
+
+\subsubsection{Apache PdfBox}
+Zeilenumbruch in für einen langen Text muss selber entwickelt werden. Gleiches gilt für die Seitenumbrüche für lange Texte sehr umständlich.
+
+Missing high-level API
+Schwierigkeiten: 
+Templates schwer zu erstellen, da diese immer auf der Basis von spezifischer Daten-Inputs basiert eine dynamische Ansicht mit einem Flow-Pattern ist eher schwierig. Ausrichten von Textblöcke wird anhand der Seitengrösse  programmiert, 
+Im Textmodus ist schwierig eine Tabelle zu kreieren mit mehrzeiligen Zelleninhalten.
+
+Vorteile
+Vorteile sind pizelgenaue Seitenausrichtungen da die Text mit Offset -Angaben ausgerichtet werden. 
+
+
+
+\subsubsection{iText}
+Es fühlt sich an als schreibe man eine Worddokument, Api ist einfach und klar, Seiten werden automatisch neu generiert. Es benötigt keine Seitenangaben wie Rand und Grösse da Standards diese bereits vorgeben. Ein Standardset an Fonts wird als Konstanten mitgegeben. Hersteller hat viele Beispiele und Hilfreiche Blogs. 
+Positionierung einzelner Elemente kann über die Canvas Funktionen ebenfalls erreicht werden z.B.  Bei definieren von Footer oder Header. 
+Dokumentübergreifende Fonteinstellung (finde ich super)
+
+Probleme mit Fussnoten, das Dokument müsste erneut bearbeitet werden um die genaue Seitenzahlen zu kennen. Beim erstellen einer neuen Seite ist die vorhergehende immer um eins kleiner da beim erstellen der Seite nicht bekannt war das eine weitere Seite zu erstellen ist.
+
+
+
+\subsection{Availability}
+
+Keine der Test ist jemals ausgefallen, es haben sich auch keine Fehler ereignet die von JMeter als solche identifiziert wurden.
+Die meisten Test haben sich über die Zeitspanne von 10 Stunden erstreckt, dabei haben  die Logs ebenfalls keine Ausfälle nachgewiesen. 
+
+
+\subsection{}
+
+
+\subsection{Throughput}
+% Welcher der Services hat am Meisten Durchsatz an den Tag gelegt ? 
+
+
+\subsection{Utilization}
+
+%CPU und Memory 
+
+\section{}
+
+Für den Autor ist diese Arbeit einen möglichen Ansatz gewsen wie ein Framework getestet werden kann. Jeweils die 
+
+\section{Ausblick}
+
+
+\end{document}
