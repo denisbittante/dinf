@@ -2,7 +2,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ffhsthesis}[2013/09/20 v0.1 Klasse fuer FFHS Thesen]
-\LoadClass[11pt,a4paper,bibliography=totoc,listof=totoc]{scrreprt}
+\LoadClass[twoside,12pt,a4paper,bibliography=totoc,listof=totoc]{scrreprt}
 \ProcessOptions\relax
 
 \RequirePackage[T1]{fontenc}
@@ -12,7 +12,7 @@
 \RequirePackage{setspace}
 \onehalfspacing
 
-\RequirePackage[left=3cm, right=3cm]{geometry}
+\RequirePackage[left=3cm, right=2.5cm]{geometry}
 
 
 \RequirePackage{helvet}
@@ -70,7 +70,7 @@
 \begin{varwidth}[t][2cm][c]{7cm}
 \begin{flushright}
 \normalfont
-Fernfachhochschule Schweiz\\
+Fernfachhochschule Schweiz 
 Studiengang \@studiengang 
 \vfill\phantom{.}
 \end{flushright}

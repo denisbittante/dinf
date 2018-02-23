@@ -1,0 +1,130 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Grundlagen}
+
+\textit{Welche Frameworks in dieser Arbeit mittels welcher Methoden und Metriken analysiert werden.}
+
+
+% Welches Ziel wird mit dem Einsatz einer Engine verfolgt? 
+
+% Welche Hauptkriterien müssen dabei untersucht werden? Warum? 
+
+\section{Performance} 
+
+Ian Molyneaux definiert eine performante Anwendung wie folgt:\newline
+\noindent 
+\say{Eine gut funktionierende Anwendung ist eine, die es dem Endbenutzer ermöglicht, eine bestimmte Aufgabe ohne übermässige Verzögerung oder Irritation auszuführen.}\cite{molyneaux2014art}
+
+Die Schlussfolgerung davon ist, dass jeder Performance verschieden empfinden kann aber auch dass für jede Aufgabe die ein geeignetest Mittel gewählt wird das zu keiner oder geringer Verzögerung führt. Eine Verzögerung kann situativ verschieden empfunden werden.
+
+Performance ist dennoch nur ein Qualitätsmerkmal von vielen das gemessen werden kann, als nicht funktionalen Anforderung werden neben Performanz- auch Speicherplatzanforderungen oder Benutzbarkeitsanforderungen genannt \cite[S. 120]{sommerville_2012}. Jedes dieser Anforderung kann mit der geeigneten Methodik erhoben werden. Es können als Beispiel Lasttest auf ein bestehendes System, falls einsolches existiert, und Lasttests durchgeführt werden um zu erkennen ob eine Applikation viel oder wenig Speicher verbraucht, auch Benutzbarkeit kann evaluiert werden das mittels Interaktionstest zwischen dem User und der Applikation dies kann zeigen ob sich der User auf Anhieb zurecht kommt oder das Navigationskonzept überdacht werden soll. Um die Performanzanforderungen zu analysieren können Prototypen gebaut werden, die mittels Performancemessungen auf verschiedene Metriken hin analysiert werden können. Diese Vorgehensweise wurde für diese Arbeit gewählt. 
+
+Die Performance kann mittels verschiedenen Metriken ausgedrückt werden. Folgende Metriken sind für diese Arbeit relevant:
+
+\subsection{Metriken - Performancemessungen}
+
+\textbf{Latenzzeit (Clientseitig):} Ist die Zeit ab der die Abfrage gesendet wurde bis sie zum Zielort und wieder den Client zurück erreicht. Diese beinhaltet die Latenzzeit des Servers und des Netzwerkes. 
+\newline
+\noindent
+\textbf{Reaktionszeit (Response Time):} Die Antwort-Zeit ist die Zeit die benötigt wird von der Abfrage bis hin aller Antworten am System empfangen wurden. Das beinhalten die Latenzzeit des Netzwerks, des Servers und allfällige Latenzzeit des Quellsystems.
+\newline
+\noindent
+\textbf{Durchsatz (Throughput):} Der Durchsatz ist die Anzahl verarbeitenden Abfragen oder Bytes die in einer definierten Zeiteinheit erledigt wurden. Es werden meist viele Stichproben gemacht um den Verlauf protokollieren zu können. Der gesamte Durchsatz wird demzufolge so berechnet:
+\begin{equation}
+\textbf{Durchsatz} = \frac{\textit{anz. Abfragen}}{\textit{Gesamtzeit}}
+\end{equation}
+\newline
+\noindent
+\textbf{Verfügbarkeit (Availability):} Die Verfügbarkeit ist solange gewährleistet bis der User den Service die Antwort bekommt, sobald die Antworten vom Server zu stark verzögert oder korrupt sind dann ist der Service nicht mehr Verfügbar. 
+
+
+
+
+% Vorgehensweise klären und Begrifflichkeiten erörtern
+
+% https://www.safaribooksonline.com/library/view/the-art-of/9781491900536/ch01.html#Chapter1
+
+\subsection{Metriken - Ressourcen}
+Damit die Clientseitigen Performancemessungen nbachvollziehbar werden, wurde entschieden auf der Service Seite einige Performance Indikatoren zu protokollieren. Diese sollen dann mit der guten oder schlechten Performance in Zusammenhang gebracht werden können. Dabei sind diese Metriken für diese Arbeit gewählt worden. 
+\newline
+\noindent
+\textbf{Memory RSS:} Das RSS steht für 'resident set size' was die Grösse der Prozesse die im Hauptspeicher gehalten werden. Diese Messung wird in MB ausgedrückt und wird jede Minute evaluiert. Der RSS würd über alle Dynos hinweg ausgegeben.
+\newline
+\noindent
+\textbf{Memory SWAP:} Der SWAP wird dann eingesetzt wenn die Prozesse keine verfügbaren Speicherplatz in der RSS finden. Die Prozesse werden somit auf der Festplatte persistiert. Dabei sind die Einstellungen des unterliegenden System ausschlaggebend wann dies passiert. 
+\newline
+\noindent
+\textbf{Web-Server - CPU (\gls{dyno} Last) } Ist die Anzahl Prozesse die auf eine Ausführung warten und sich im Status 'Ready' befinden. Dabei werden die Stichproben über eine und zehn Minuten aufgezeichnet. 
+\subsection{Plattform as a Service}
+
+Die Performancemessungen auf einer \acrlong{paas} auszuführen bringt verschiedene Vorteile wie z.b. die Möglichkeit eine relativ große Infrastruktur für eine kurze Zeit günstig zu mieten, ebenfalls kann diese relativ schnell an die Bedürfnisse angepasst werden. Wie z.B die Anzahl Instanzen dynamisch anzupassen und somit auf die Bedürfnisse eines Anwendungsfalls reagieren zu können. Ebenfalls kann von den voreingestellten Konfigurationen profitiert werden, da diese für die meisten Fälle bereits optimal definiert wurden. Während einem Performancetest ist es auch nötig die Ressourcen zu protokollieren, was auf einer PaaS dank dem Einsatz von Ad-Ons leicht zu erreichen ist. 
+Doch kann eine PaaS auch Nachteile mit sich bringen, wie z.B. kann diese nicht immer ganz  zuverlässig sein, ein Server kann vielleicht nicht wie gewohnt gestartet werden oder brechen abrupt ab. Dies stellt meisst keine weitere Probleme dar da diese Instanzen leicht wieder gestartet oder gelöscht werden können. \cite[Kap.~3]{molyneaux2014art} 
+
+
+Heroku, de gewählte PaaS, bietet eine 
+In diesem Anwendungsfall wurde ein sogenannter Dyno Typ 'Standard-2x'. Dieser Typ von Dyno verfügt über 1024 MB \gls{ram} und kann bis hundertfach horizontal skaliert werden (Scaling out). Der Dyno verfällt nicht im Schlafmodus was bedeutet dass die ersten Anfragen ebenfalls nicht länger dauern als die anschliessenden.
+E
+
+
+\section{Open Source Reporting Engine }
+
+% Fragen beantworten wie : Marktanteil, What is claimed, Performance and Community, OpenSource in wie weit? 
+
+% Es soll ein wissenschaftliche Arbeit, darum beschreiben warum diese Methodik genutzt wird, damit es nicht in eine Projektarbeit ausartet.
+
+Als Open Source Reporting Engine werden die Libraries definiert welche als Einsatzgebiet das rendern und generieren von Reports haben. Ein Einsatzgebiet kann das generieren von Flugtickets, das grafische Aufbereiten von Geschäfszahlen oder einfach nur das Darstellen von Fliesstext sein.
+
+Es gibt im Markt verschiedene dieser OSREs wie  Apache PdfBox , iText ,BIRT, JasperReports um nur einige der Engines zu nennen. Viele dieser OSREs sind auf ein Einsatzgebiet spezialisiert. Meist können diese OSREs nicht nur Reports generieren sondern diese auch verarbeiten oder verändern. Als Zielformat wird oft PDF genutzt, dieses Format ist ideal um Druckvorlagen zu erstelln oder die Informatioen auf verschiedenen Endgeräten darzustellen. Das mach PDF ein robustes und versatiles Dateiformat. 
+Wir wollen im folgenden die für die Prototypen genutzen OSREs Näher betrachten. 
+
+
+\subsection{JasperReports\textregistered}
+Das von Teodor Daciu lancierte Reporting Tool wurde aufgrund grosser Nachfrage im November 2001 in der Version 0.1.5 lanciert \cite[Kapitel~1]{heffelfinger_2009}. Die Reporte werden als Vorlagen im XML-Format definiert, diese Vorlagen können für die Verarbeitung vorkompiliert werden. Der Visual Designer iReport macht es möglich das Layout grafisch zu bearbeiten, dank diesem Ansatz kann das Layout von Programmcode getrennt werden. JasperReports nutzt als Framework iText um einige der Features umzusetzen. 
+
+
+\subsection{iText}
+Als die Studenten- und Kursverwaltung einer Universität fertiggestellt wurde, musste eine geeigenete Druckmöglichkeit gefunden werden. HTML und Word waren als ungeeignetes Mittel angesehen man entscheid PDF einzusetzen. Da im 1998 noch keine geeignete \acrshort{foss} für PDF existierte wurde eine eigene Library geschrieben heute bekannt als iText. iText wird heute in verschiedenen Software eingesetzt und kann in Tools wie Eclipse/BIRT und JasperReports gefunden werden. NASA  nutzt die Library für ihre Blueprints und Google Calendar gehört ebenfalls zu den Nutzer dieser Library. \cite{lowagie_2010}
+
+\subsection{Apache PDFBox}
+Im Jahre 2002 wurde für das Projekt Apache Lucene eine Library gesucht um den Inhalt von PDFs zu extrahieren. Das Ziel war den Inhalt duch Lucene zu indexieren. Diese Library wurde von Ben Litchfield initialisiert und seit der ersten Version wurden verschiedene Performance Verbesserungen eingeführt. Lucene wird von Wikipedia und Twitter genutzt. Zu den Features von Apache PDFBox gehört nicht nur das extrahieren von Inhalten sondern auch teilen, vereinen und füllen von PDFs. 
+\cite{apachepdfbox_history}
+
+
+\subsection{Gegenüberstellung}
+
+Die hier vorgestellten Open Source Framworks können mehr als nur PDFs erstellen, obwohl einzig diese die Eigenschaft die in dieser Arbeit geprüft wird. Die meisten dieser Frameworks können Inhalte aus bestehenden PDFs entnehemen, PDFs teilen oder vereinen. 
+Wie die Tabelle \ref{table:featuresOSRE} zeigt sind bei der Ausbaustufe trotzdem Unterschiede festzustellen. 
+
+
+\begin{table}[h]
+\centering
+
+\begin{tabular}{lccc}
+               & Apache PDF Box & iText  & JasperReport \\ \hline
+PDF Metadaten           &         X      &   X    &     X        \\
+PDF generieren   &         X      &   X    &     X        \\
+Bilder einfügen         &  X             &   X    &     X        \\
+Formen zeichnen         &  X             &   X    &     X        \\
+Tabellen einfügen                &                &   X    &     X        \\
+Tabellen-Zellen formatieren      &                &   X    &     X        \\
+Layout-Vorlage definieren         &                &        &     X        \\
+\end{tabular}
+\caption{OSRE PDF-Erstellen Features}
+\label{table:featuresOSRE}
+\end{table}
+
+
+\section{ Abgrenzung der Arbeit}
+
+Es ist in dieser Arbeit nicht möglich alle Aspekte von Performance und deren Analyse vorzunehmen. Darum werden die hier erarbeiteten Erkenntnisse nicht als Allgemein gültig definiert. 
+
+\textbf{PDF-Implementation und Layout} \newline
+Die generierten PDF werden anhand des gleichen Inputs generiert, die Verarbeitung dieser Inputs wird jedoch von jedem Reporting Engine verschieden aufbereitet. Aufgrund des Funktionsumfang der OSRE kann nicht gewährleistet werden das die performanteste Umsetzung gewählt wurde oder die idealsten Features genutzt wurden. Das die ORSE verschiedene Strategien besitzen wie PDF erstellt werden und nicht alle API's gleich ausgereift sind, sind einige der Layouts nicht vollständig von einer OSRE auf die Andere übertragbar. Darum wurde Wert darauf gelegt das die Reporte sich schlussendlich ähneln und die Informationen angezeigt werden konnen. 
+
+\textbf{PaaS}\newline
+Die verschiedenen Applikationen wurden auf der PaaS Heroku betrieben getestet. Da die Performance einer Applikationen durch verschiedene nicht beinflussbaren Ereignissen verändert wird, wie z.B. die Netzwerklatenzzeit oder die Last selbst auf den Providern, ist zu erwarten dass die Ergebnisse immer unterschiedlich sein werden. 
+Ein Aspekt der in dieser Arbeit nicht betrachtet wird der doch in Zusammenhang mit Performance Tests auf einer PaaS sehr relevant ist, ist das Load-Balancing. Einerseits werden die User die, die Anfragen stellen immer die gleiche IP-Adresse besitzen, ebenfalls werden keine Autoscaling-Dynos gestartet was bedeutet die Anfragen nicht auf mehrere Dynos aufgeteilt, sondern nur auf einem Server verarbeitet werden. Es ist somit klar dass diese Test-Umgebung mit einer produktiven Umgebung nicht vergleichbar ist und somit die Ergebnisse nicht absolut übertragbar sind.
+
+\end{document}

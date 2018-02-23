@@ -154,7 +154,7 @@
 %%%%%Dokument beginnt hier: %%%%%
 \begin{document}
 
-
+\pagenumbering{gobble}
 
 \dokumentTyp{Bachelor-Thesis}
 \studiengang{INF}
@@ -163,27 +163,28 @@
 \author{Denis E. Bittante Fanacon}
 \wohnort{St. Gallen}
 %\referent{Name des Referenten\\ Titel\\Unterrichtetes Fach}
-\referentin{Name der Referentin\\ Titel\\Unterrichtetes Fach}
-\eingereichtBei{Prof. Dr. Zimmermann Heinrich \\
+\referent{Heinrich Zimmermann \\ Prof. Dr. \\ Fachbereich Enterprise Computing }
+\eingereichtBei{ Dr. Oliver Kamin \\
 Departement Informatik\\
-Dozent Java Enterprise Edition } 
+Departementsleiter } 
 
-%\dedication{Diese Thesis widme ich\\\dots}
+\dedication{}
 
 
 % Setzt das Zitatsquelle in eckigen Klammern [1] und nicht (1)
 \setcitestyle{square}
 
-\pagenumbering{Roman}  
+
 
 %% Titelblatt 
 \maketitle
+
 \setcounter{page}{0}
 
-%\pagestyle{headings}    % wieder auf normale Seitenrahmen zurück schalten
 
+\pagestyle{headings}    % wieder auf normale Seitenrahmen zurück schalten
 
-
+\pagenumbering{Roman}  
 %% Abstract Zusammenfassung und Ergebnis darzustellen
 \subfile{0_abstract}
 
@@ -251,11 +252,11 @@ Dozent Java Enterprise Edition }
 
 %Selbständigkeitserklärung
 \subfile{anhang/erklaerung}
-
+\clearpage
 % Anhang falls es keinen Anhang hat dann löschen
-\section*{Anhang}
+\chapter*{Anhang}
 
-
+\iffalse
 Nr. Kriterien Gewichtung\newline
 1 Erfassung des Themas 10/100 \newline
 1.1. Definition des Themas, Problemstellung\newline
@@ -288,7 +289,7 @@ Nr. Kriterien Gewichtung\newline
 6.1. Erfüllung des AIDA-Prinzips, gemäss Ratgeber\newline
 6.2. Inhalt, Aussage, Verständlichkeit\newline
 6.3 Visuelle Grammatik, gemäss Ratgeber\newline
-
+\fi
 
 
 \includegraphics[width=350pt ]{anhang/screencapture-dashboard-heroku-apps-dinf-app-metrics-web-1517153971214.png}\newline

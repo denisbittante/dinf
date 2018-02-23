@@ -11,9 +11,9 @@ Jeder Prototyp ist in zweiteilig , die Prototypen besitzen die gleiche REST-Schn
 \section{Schnittstelle}
 
 
-Die Schnittstelle wurde so implementiert, das eine \acrshort{http}-POST Anfrage entgegengenommen werden kann. Den Request-Body wird dem Interface '\texttt{PdfEngine}' weitergegeben. Dieses Interface wurde mithilfe der Spring-Annotation @Autowired injected. Damit besteht eine lose Koppelung der PDF-Implementation und der Schnittstelle gegen aussen. Dank dieser Aufstellung kann nun einfach eine beliebige Implementation aufgerufen werden.
+Die Schnittstelle wurde so implementiert, das eine \acrshort{http}-POST Anfrage entgegengenommen werden kann. Den Request-Body wird dem Interface '\texttt{PdfEngine}' weitergegeben. Dieses Interface wurde mithilfe der Spring-Annotation @Autowired injected. Damit besteht eine lose Koppelung der \acrshort{pdf}-Implementation und der Schnittstelle gegen aussen. Dank dieser Aufstellung kann nun einfach eine beliebige Implementation aufgerufen werden.
 
-Die REST-Schnittstelle bietet die drei PDF-Szenarien über die Endpunkte /scenario1, /scenario2 und /scenario3 an.   
+Die \acrshort{rest}-Schnittstelle bietet die drei PDF-Szenarien über die Endpunkte \texttt{/scenario1}, \texttt{/scenario2} und \texttt{/scenario3} an.   
 
 \begin{lstlisting}[language=Java]
 @RestController("/")
@@ -31,18 +31,18 @@ public class PdfServiceController {
 \end{lstlisting}
 
 \subsection{Requests}
-Die Endpunkte werden mit den folgendend Post-Bodys angesprochen. 
+Die Endpunkte werden mit den folgenden \gls{post}-Bodys angesprochen. 
 
 
-\textbf{Szenario 1}
-
+\subsubsection{Szenario 1}
+Das \acrlong{json} für das erste Szenario bildet das Modell für eine Aktivität ab. Diese soll einen Titel und eine Zeitangabe besitzen wann diese stattfindet. Es wurden verschiedene Informationen hinterlegt die für eine Freizeitbeschäftigung interessant wären, wie wer organisiert und welche Freunde oder Helfer eingeladen werden, sowie wo es stattfinden soll.  
 \begin{lstlisting}[language=json]
 {"data": [
       {
-      "title":          "Titel Test",
+      "title":          "Sommer-Fest",
       "datumVon":       "12.02.2017 16:00",
-      "datumBis":       "12.02.2017 17:00",
-      "description":    "Eine Beschreibung",
+      "datumBis":       "12.02.2017 23:00",
+      "description":    "Bringt Essen und gute Laune mit",
       "place":          "Musterstrasse 12\n888 Musterstadt\nSchweiz",
       "incharge":       "Denis Bittante",
       "helper":         "Lars Hauser, Max Muster",
@@ -54,8 +54,8 @@ Die Endpunkte werden mit den folgendend Post-Bodys angesprochen.
 \end{lstlisting}
 
 
-\textbf{Szenario 2}
-
+\subsubsection{Szenario 2}
+Szenario 2 ist sozusagen eine Zusammenfassung oder Programm der interessanten Aktivitäten an einem Tag anstehen werden. Die Daten fassen die Eckdaten einer Aktivität zusammen wie der Organisator und die Zeitangaben. Es gibt keine Details aber eine Möglichkeit eine Fussnote zu versehen die nach jedem Tag erscheinen soll. 
 \begin{lstlisting}[language=json]
 {"group": [
       {
@@ -64,8 +64,7 @@ Die Endpunkte werden mit den folgendend Post-Bodys angesprochen.
             "time":         "19:00",
             "title":        "Ein Titel",
             "person":       "D.Bittante",
-            "isSubtitle":   false,
-            "subtitle":     false
+            "isSubtitle":   false
          },  ...
       ],
       "footer": "Special Information as Footnote"
@@ -76,7 +75,9 @@ Die Endpunkte werden mit den folgendend Post-Bodys angesprochen.
 \end{lstlisting}
 
 
-\textbf{Szenario 3}
+\subsubsection{Szenario 3}
+
+Im dritten Szenario wurde entscheiden eine Kontaktliste darzustellen, damit die Helfer und Freunde auch ausgedruckt werden können. In Hinblick festzustellen wie die \acrlong{osre} mit Bilder und Tabellen umgeben könenn wurde hier entschieden die Personendaten wie Vorname, Familienname und Adress- und Kontaktdaten zu hinterlegen aber auch die Information des Geschlechts dabei steht 'm' für männlich (male) und 'f' für female. Die Gender-Information soll dann auf der Kontaktliste als Gender-Symbol dargestellt werden. 
 
 \begin{lstlisting}[language=json]
 {"contacts": [
@@ -104,8 +105,8 @@ Die Endpunkte werden mit den folgendend Post-Bodys angesprochen.
  
 
 
-\subsection{Response}
-Die Repsonses der REST-Schnittstelle wurden einfach gehalten, daher wird die OSRE und das Szenario angegeben und ob die Verarbeitung korrekt abgeschlossen wurde. Das generierte PDF ist als base64 encodiert und als Attribut 'file' in der Response zu finden. 
+\subsection{Responses}
+Die Responses der REST-Schnittstelle wurden einfach gehalten, daher wird die OSRE und das Szenario angegeben und im Feld \texttt{status} ob die Verarbeitung korrekt abgeschlossen wurde. Das generierte PDF ist als base64 encodiert und als Feld \texttt{file} in der Response zu finden. 
 \begin{lstlisting}[language=json]
 {
    "name": "ApachePdfBox",
@@ -179,16 +180,16 @@ heroku restart --app dinf-app
 
 \subsection{Technische Details}
 
-Folgende technischen Eckdaten sind in diesem Experiment  wichtig um die gleichen Performance-Ergebnisse erzielen zu könenn. 
+Folgende technischen Eckdaten sind in diesem Experiment  von Vorteil um ähnliche Performance-Ergebnisse erzielen zu könenn. 
 
 Es wurden folgene Versionen genutzt: 
 
 
-\begin{table}[h]
+\begin{table}[!hb]
 \label{softversion}
 \begin{tabular}{ll}
- Software          & Version   \\ \hline
-Java        &      SE 1.8   X      \\
+Software          & Version   \\ \hline
+Java        &      jdk 1.8.0.112      \\
 Spring Boot &         1.5.8.RELEASE        \\
 
 iText        &        7.1.0  \\
@@ -200,10 +201,20 @@ Apache PDFBox - preflight & 2.0.0 \\
 Apache PDFBox - pdfbox-tools & 2.0.0 \\
 JasperReport & 6.4.3 \\
 JasperReport - fonts & 4.0.0 \\
+Maven   &  3.3.9 \\
+ & \\
+
+Heroku (PaaS)    & \\ \hline
+Region & USA \\
+Stack & heroku-16 \\
+Buildpacks & heroku/jvm \\
+Dyno Type & Standard-2X \\
+RAM & 1GB \\
+Anzahl Dyno & 1 \\
 
 
 \end{tabular}
-\caption{Software Versionen}
+\caption{Technische Angaben}
 \end{table}
 
 
