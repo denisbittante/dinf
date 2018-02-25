@@ -16,40 +16,51 @@ import ch.ffhs.dinf.utils.FileUtils;
 public class LogExtractor {
 
 	private static final String readFolder = "C:\\sandbox\\dinf\\dinf\\loadtest\\results\\heroku-log\\";
-	private static final String writeFile = "C:\\sandbox\\dinf\\dinf\\loadtest\\results\\heroku-log\\memory.csv";
+	private static final String writeFile = "C:\\sandbox\\dinf\\dinf\\loadtest\\results\\heroku-log\\";
 
 	private static final Pattern pattRessources = Pattern.compile(
-			// "(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{6}\\+\\d{2}:\\d{2})
-			// heroku\\[web.1\\]: source=web.1 dyno=([\\w|\\.|-]){52}
-			// sample#memory_total=(\\d+\\.\\d{2})MB
-			// sample#memory_rss=(\\d+\\.\\d{2})MB
-			// sample#memory_cache=(\\d+\\.\\d{2})MB
-			// sample#memory_swap=(\\d+\\.\\d{2})MB
-			// sample#memory_pgpgin=(\\d+)pages
-			// sample#memory_pgpgout=(\\d+)pages
-			// sample#memory_quota=(\\d+\\.\\d{2})MB");
 			"\\d+\\s([\\d|\\-\\:|\\w]+)\\s[\\d|\\-\\:|\\w]+\\s\\d+\\s[\\w|\\-]+\\s[\\d|\\.]+\\s\\w+\\s\\w+\\s[\\w|/|\\.]+\\ssource=web.1 dyno=[\\w|\\.|-]{52} sample#memory_total=(\\d+\\.\\d{2})MB sample#memory_rss=(\\d+\\.\\d{2})MB sample#memory_cache=(\\d+\\.\\d{2})MB sample#memory_swap=(\\d+\\.\\d{2})MB sample#memory_pgpgin=(\\d+)pages sample#memory_pgpgout=(\\d+)pages sample#memory_quota=(\\d+\\.\\d{2})MB");
 
+	private static final Pattern loadPattern = Pattern.compile(
+			"\\d+\\s([\\d|\\-\\:|\\w]+)\\s[\\d|\\-\\:|\\w]+\\s(\\d+)\\s[\\w|\\-]+\\s[\\d|\\.]+\\s\\w+\\s\\w+\\s[\\w|/|\\.]+\\ssource=web.1 dyno=[\\w|\\.|-]{52} sample#load_avg_1m=(\\d+\\.\\d{2}) sample#load_avg_5m=(\\d+\\.\\d{2}) sample#load_avg_15m=(\\d+\\.\\d{2})");
+
 	public static void main(String[] args) {
+
+		parseFiles(getLoadHeader(), "load.csv", loadPattern);
+
+		// parseFiles(getMemoryHeader(), "memory.csv", pattRessources);
+
+	}
+
+	private static void parseFiles(String header, String filename, Pattern pattern) {
 		StringBuffer readEachline = new StringBuffer();
 
-		readEachline.append(getHeader());
+		readEachline.append(header);
 
 		File folder = new File(readFolder);
 		File[] listOfFiles = folder.listFiles();
 
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".tsv")) {
-				readEachline.append(readEachline(file.getAbsolutePath()));
+				readEachline.append(readEachline(file.getAbsolutePath(), pattern));
 			}
 		}
-		FileUtils.writeFile(readEachline.toString(), writeFile);
-
+		FileUtils.writeFile(readEachline.toString(), writeFile + filename);
 	}
 
-	private static String getHeader() {
+	private static String getLoadHeader() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("osre-szenario,");
+		buffer.append("label,product,szenario");
+		buffer.append("date,");
+		buffer.append("load_avg_1m,");
+		buffer.append("load_avg_5m,");
+		buffer.append("load_avg_15m\n");
+		return buffer.toString();
+	}
+
+	private static String getMemoryHeader() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("label,product,szenario");
 		buffer.append("date,");
 		buffer.append("memory_total (MB),");
 		buffer.append("memory_rss (MB),");
@@ -61,7 +72,7 @@ public class LogExtractor {
 		return buffer.toString();
 	}
 
-	public static String readEachline(String readFile) {
+	public static String readEachline(String readFile, Pattern pattern) {
 
 		StringBuffer buffer = new StringBuffer();
 
@@ -71,30 +82,23 @@ public class LogExtractor {
 
 			while ((sCurrentLine = br.readLine()) != null) {
 
-				Matcher m = pattRessources.matcher(sCurrentLine);
+				Matcher m = pattern.matcher(sCurrentLine);
 
 				while (m.find()) {
 					String loadTest = getLoadTest(m.group(1));
 
 					if (!loadTest.equals("none")) {
+
 						buffer.append(loadTest);
 						buffer.append(",");
-						buffer.append(m.group(1));
-						buffer.append(",");
-						buffer.append(m.group(2));
-						buffer.append(",");
-						buffer.append(m.group(3));
-						buffer.append(",");
-						buffer.append(m.group(4));
-						buffer.append(",");
-						buffer.append(m.group(5));
-						buffer.append(",");
-						buffer.append(m.group(6));
-						buffer.append(",");
-						buffer.append(m.group(7));
-						buffer.append(",");
-						buffer.append(m.group(8));
+
+						for (int i = 1; i <= m.groupCount(); i++) {
+							buffer.append(m.group(i));
+							buffer.append(",");
+
+						}
 						buffer.append("\n");
+
 					}
 
 				}
@@ -111,7 +115,15 @@ public class LogExtractor {
 	private static String[] stages = { "iText-deploy", "iText-1a", "iText-1b", "iText-1c", "iText-2a", "iText-2b",
 			"iText-2c", "iText-3a", "iText-3b", "iText-3c", "Jasper-deploy", "Jasper-1a", "Jasper-1b", "Jasper-1c",
 			"Jasper-2a", "Jasper-2b", "Jasper-2c", "Jasper-3a", "Jasper-3b", "Jasper-3c", "PdfBox-deploy", "PdfBox-1a",
-			"PdfBox-1b", "PdfBox-1c", "PdfBox-2a", "PdfBox-2b", "PdfBox-2c", "PdfBox-3a", "PdfBox-3b", "PdfBox-3c", };
+			"PdfBox-1b", "PdfBox-1c", "PdfBox-2a", "PdfBox-2b", "PdfBox-2c", "PdfBox-3a", "PdfBox-3b", "PdfBox-3c" };
+
+	private static String[] szenario = { "deploy", "1a", "1b", "1c", "2a", "2b", "2c", "3a", "3b", "3c", "deploy", "1a",
+			"1b", "1c", "2a", "2b", "2c", "3a", "3b", "3c", "deploy", "1a", "1b", "1c", "2a", "2b", "2c", "3a", "3b",
+			"3c" };
+
+	private static String[] product = { "iText", "iText", "iText", "iText", "iText", "iText", "iText", "iText", "iText",
+			"iText", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper", "Jasper",
+			"PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox", "PdfBox" };
 
 	protected static String getLoadTest(String date) {
 
@@ -128,17 +140,11 @@ public class LogExtractor {
 		double start = 1517961600000d - (60d * 60d * 1000d);
 		double timetask = 20d * 60d * 1000d;
 
-		String process = "";
-
 		double d = time - start;
 		double e = d / timetask;
 
-		if (e < 200 && e > 0) {
-			System.out.println("gotcha ");
-		}
-
 		if (e < 30 && e > 0) {
-			return stages[(int) e];
+			return stages[(int) e] + "," + product[(int) e] + "," + szenario[(int) e] + ", " + Double.toString(time);
 		}
 		return "none";
 
