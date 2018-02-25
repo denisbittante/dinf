@@ -199,22 +199,22 @@ public class TestUtils {
 	public static void showPdf(PdfResponse pdfResponse) throws IOException, FileNotFoundException {
 
 		// To display the PDF directly on the screen
-		/**
-		 * if (pdfResponse.getFile().length() > 0) {
-		 * 
-		 * File tempFile2 = File.createTempFile("szenario", ".pdf");
-		 * 
-		 * FileOutputStream fileInputStreamReader = new
-		 * FileOutputStream(tempFile2);
-		 * fileInputStreamReader.write(Base64.decodeBase64(pdfResponse.getFile()));
-		 * fileInputStreamReader.close();
-		 * 
-		 * if (Desktop.isDesktopSupported()) {
-		 * Desktop.getDesktop().open(tempFile2); } else {
-		 * System.out.println("Awt Desktop is not supported!"); }
-		 * 
-		 * } else { System.out.println("File is not exists!"); }
-		 **/
+		
+		 if (pdfResponse.getFile().length() > 0) {
+		  
+		  File tempFile2 = File.createTempFile("szenario", ".pdf");
+		  
+		  FileOutputStream fileInputStreamReader = new
+		  FileOutputStream(tempFile2);
+		  fileInputStreamReader.write(Base64.decodeBase64(pdfResponse.getFile()));
+		  fileInputStreamReader.close();
+		  
+		  if (Desktop.isDesktopSupported()) {
+		  Desktop.getDesktop().open(tempFile2); } else {
+		  System.out.println("Awt Desktop is not supported!"); }
+		  
+		  } else { System.out.println("File is not exists!"); }
+		 
 	}
 
 }

@@ -2,7 +2,6 @@ package ch.ffhs.dinf.osre.itext.service;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ffhs.dinf.osre.engine.api.PdfResponse;
