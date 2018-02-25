@@ -3,15 +3,15 @@
 
 
 \chapter{Prototyp}
-Um heraus zu finden welche der OSRE am performantesten ist, wurden drei Prototypen erstellt. Mit diesen soll erforscht werden, wie sich eine Applikation beim Einsatz der verschiedenen ORSE verhaltet. Es wurde darauf geachtet das der Prototyp nur genau die Komponenten besitzt die es für die Aufgabe benötigt.  
+Um herauszufinden, welche der OSRE am leistungsstärksten ist, wurden drei Prototypen erstellt. Mit diesen soll erforscht werden, wie sich eine Applikation beim Einsatz der verschiedenen ORSE verhält. Es wurde darauf geachtet, dass der Prototyp nur genau die Komponenten besitzt, die für die Aufgabe benötigt werden.  
 
-Jeder Prototyp ist in zweiteilig , die Prototypen besitzen die gleiche REST-Schnittstelle welche die Anfragen entgegen nimmt. Die REST-Schnittstelle leitet diese Anfrage  an die entsprechende Implementationen weiter. Dort werden diese Anfragen in konkrete PDFs umgesetzt. Im folgenden werden die Grundlegenden Aspekten der Implementationen näher betrachtet. 
+Jeder Prototyp ist zweiteilig. Die Prototypen besitzen die gleiche REST-Schnittstelle, welche die Anfragen entgegennimmt. Die REST-Schnittstelle leitet diese Anfrage an die entsprechenden Implementationen weiter. Dort werden diese Anfragen in konkrete PDFs umgesetzt. Im Folgenden werden die grundlegenden Aspekte der Implementationen näher betrachtet. 
 
 
 \section{Schnittstelle}
 
 
-Die Schnittstelle wurde so implementiert, das eine \acrshort{http}-POST Anfrage entgegengenommen werden kann. Den Request-Body wird dem Interface '\texttt{PdfEngine}' weitergegeben. Dieses Interface wurde mithilfe der Spring-Annotation @Autowired injected. Damit besteht eine lose Koppelung der \acrshort{pdf}-Implementation und der Schnittstelle gegen aussen. Dank dieser Aufstellung kann nun einfach eine beliebige Implementation aufgerufen werden.
+Die Schnittstelle wurde so implementiert, dass eine \acrshort{http}-POST-Anfrage entgegengenommen werden kann. Der Request-Body wird dem Interface '\texttt{PdfEngine}' weitergegeben. Dieses Interface wurde mithilfe der Spring-Annotation @Autowired eingesetzt. Damit besteht eine lose Koppelung der \acrshort{pdf}-Implementation und der Schnittstelle gegen aussen. Dank dieser Aufstellung kann nun einfach eine beliebige Implementation aufgerufen werden.
 
 Die \acrshort{rest}-Schnittstelle bietet die drei PDF-Szenarien über die Endpunkte \texttt{/scenario1}, \texttt{/scenario2} und \texttt{/scenario3} an.   
 
@@ -35,7 +35,7 @@ Die Endpunkte werden mit den folgenden \gls{post}-Bodys angesprochen.
 
 
 \subsubsection{Szenario 1}
-Das \acrlong{json} für das erste Szenario bildet das Modell für eine Aktivität ab. Diese soll einen Titel und eine Zeitangabe besitzen wann diese stattfindet. Es wurden verschiedene Informationen hinterlegt die für eine Freizeitbeschäftigung interessant wären, wie wer organisiert und welche Freunde oder Helfer eingeladen werden, sowie wo es stattfinden soll.  
+Das \acrlong{json} für das erste Szenario bildet das Modell für eine Aktivität ab. Diese soll einen Titel und eine Zeitangabe besitzen, wann diese stattfindet. Es wurden verschiedene Informationen hinterlegt, die für eine Freizeitbeschäftigung interessant wären, wie: Wer organisiert und welche Freunde oder Helfer werden eingeladen? Wo soll es stattfinden?  
 \begin{lstlisting}[language=json]
 {"data": [
       {
@@ -55,7 +55,7 @@ Das \acrlong{json} für das erste Szenario bildet das Modell für eine Aktivitä
 
 
 \subsubsection{Szenario 2}
-Szenario 2 ist sozusagen eine Zusammenfassung oder Programm der interessanten Aktivitäten an einem Tag anstehen werden. Die Daten fassen die Eckdaten einer Aktivität zusammen wie der Organisator und die Zeitangaben. Es gibt keine Details aber eine Möglichkeit eine Fussnote zu versehen die nach jedem Tag erscheinen soll. 
+Szenario 2 ist sozusagen eine Zusammenfassung oder das Programm der interessanten Aktivitäten an einem Tag anstehen werden. Die Daten fassen die Eckdaten einer Aktivität zusammen wie der Organisator und die Zeitangaben. Es gibt keine Details aber eine Möglichkeit eine Fussnote zu versehen die nach jedem Tag erscheinen soll. 
 \begin{lstlisting}[language=json]
 {"group": [
       {
@@ -77,7 +77,7 @@ Szenario 2 ist sozusagen eine Zusammenfassung oder Programm der interessanten Ak
 
 \subsubsection{Szenario 3}
 
-Im dritten Szenario wurde entscheiden eine Kontaktliste darzustellen, damit die Helfer und Freunde auch ausgedruckt werden können. In Hinblick festzustellen wie die \acrlong{osre} mit Bilder und Tabellen umgeben könenn wurde hier entschieden die Personendaten wie Vorname, Familienname und Adress- und Kontaktdaten zu hinterlegen aber auch die Information des Geschlechts dabei steht 'm' für männlich (male) und 'f' für female. Die Gender-Information soll dann auf der Kontaktliste als Gender-Symbol dargestellt werden. 
+Im dritten Szenario wurde entscheiden, eine Kontaktliste zu erstellen, damit die Helfer und Freunde auch ausgedruckt werden können. Im Hinblick darauf, wie die Bilder und Tabellen eingefügt werden können, wurde hier entschieden, die Personendaten wie Vorname, Familienname und Adress- und Kontaktdaten zu hinterlegen, aber auch die Information zum Geschlecht. Dabei steht ’m’ für männlich (male) und ’f’ für female. Die Gender-Information soll dann auf der Kontaktliste als Gender-Symbol dargestellt werden.
 
 \begin{lstlisting}[language=json]
 {"contacts": [
@@ -106,7 +106,7 @@ Im dritten Szenario wurde entscheiden eine Kontaktliste darzustellen, damit die 
 
 
 \subsection{Responses}
-Die Responses der REST-Schnittstelle wurden einfach gehalten, daher wird die OSRE und das Szenario angegeben und im Feld \texttt{status} ob die Verarbeitung korrekt abgeschlossen wurde. Das generierte PDF ist als base64 encodiert und als Feld \texttt{file} in der Response zu finden. 
+Die Responses der REST-Schnittstelle wurden einfach gehalten, daher werden die OSRE und das Szenario angegeben und im Feld \texttt{Status}, ob die Verarbeitung korrekt abgeschlossen wurde. Das generierte PDF ist als base64 encodiert und als Feld \texttt{file} in der Response zu finden. 
 \begin{lstlisting}[language=json]
 {
    "name": "ApachePdfBox",
@@ -122,7 +122,7 @@ Die Responses der REST-Schnittstelle wurden einfach gehalten, daher wird die OSR
 
 \section{PDF Generierung}
 
-Beim Injecten des Interfaces PDFEngine werden je nach Build eines der drei Implementationen instanziert (siehe Abbildung \ref{figure:pdfEngineImpl}). Jeder dieser Klassen hat alle drei Szenarien zu implementieren.  
+Beim Einsetzen des Interfaces PDFEngine werden je nach Build eine der drei Implementationen instanziert (siehe Abbildung \ref{figure:pdfEngineImpl}). Jede dieser Klassen hat alle drei Szenarien zu implementieren.  
 
 
 \begin{figure}[h]
@@ -132,7 +132,7 @@ Beim Injecten des Interfaces PDFEngine werden je nach Build eines der drei Imple
  \label{figure:pdfEngineImpl}
 \end{figure}
 
-Die einzelne Szenarien wurden ebenfalls als Interfaces deklariert damit jedes dieser Szenarios nicht anders oder nur teilweise implementiert wird. Als Basis-Klasse wurde die AbstractScenario-Klasse implementiert, diese regelt den Aufbau und wie die Temporären Files auf dem System abgelegt werden und diese wieder abgeräumt werden. Diese abstrakte Klasse übernimmt ebenfalls den Aufbau und und das Handling des PdfRequest als Business-Model. Dieses Model steht jeder Implementation über die Methode getModel zur Verfügung.   
+Die einzelnen Szenarien wurden ebenfalls als Interfaces deklariert, damit jedes dieser Szenarios nicht anders oder nur teilweise implementiert wird. Als Basis-Klasse wurde die AbstractScenario-Klasse implementiert. Diese regelt den Aufbau, wie die temporären Files auf dem System abgelegt werden und wie diese wieder abgeräumt werden. Diese abstrakte Klasse übernimmt ebenfalls den Aufbau und und das Handling des PdfRequest als Business-Model. Dieses Model steht jeder Implementation über die Methode getModel zur Verfügung.   
 
 \begin{figure}[h]
 \includegraphics[width=\textwidth ]{pic/uml/SzenarioImplementation.jpg}
@@ -144,7 +144,7 @@ Die einzelne Szenarien wurden ebenfalls als Interfaces deklariert damit jedes di
 
 \subsection{Build / Deployment}
 
-Die einzelnen Jars mit den gewünschten implementation können mittels Maven gebildet werden dazu wurden für jedes Produkt ein Profil eingerichtet. Dafür muss das Projekt vollständig gebildet werden, damit die einzelnen Implementationen als Archiv im Maven Repository erreichbar sind und anschliessend kann der REST-Service gebildetet und gestartet werden.  
+Die einzelnen Jars mit den gewünschten Implementationen können mittels Maven gebildet werden. Dazu wurde für jedes Produkt ein Profil eingerichtet. Dafür muss das Projekt vollständig gebildet werden, damit die einzelnen Implementationen als Archiv im Maven Repository erreichbar sind, und anschliessend kann der REST-Service gebildet und gestartet werden.  
 
 \begin{lstlisting}[language=command.com]
 
@@ -164,7 +164,7 @@ mvn clean install -Ppdfbox
 \end{lstlisting}
 
 
-Das generierte Jar kann über den heroku Komando ebenfalls über die Console deployed werden. Das der Stand des gewünschten Dyno meist nicht bekannt ist wurde nach dem Deployment auch den Dyno neu gestartet. 
+Das generierte Jar kann über das heroku-Komamndo ebenfalls über die Konsole deployed werden. Da der Stand des gewünschten Dynos meist nicht bekannt ist, wurde nach dem Deployment auch der Dyno neu gestartet. 
 
 \begin{lstlisting}[language=command.com]
 
@@ -180,9 +180,9 @@ heroku restart --app dinf-app
 
 \subsection{Technische Details}
 
-Folgende technischen Eckdaten sind in diesem Experiment  von Vorteil um ähnliche Performance-Ergebnisse erzielen zu könenn. 
+Folgende technischen Eckdaten sind in diesem Experiment von Vorteil, um ähnliche Performance-Ergebnisse erzielen zu können. 
 
-Es wurden folgene Versionen genutzt: 
+Es wurden folgende Versionen genutzt: 
 
 
 \begin{table}[!hb]

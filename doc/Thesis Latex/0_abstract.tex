@@ -2,25 +2,34 @@
 \begin{document}
 
 
-
+%% Korrektur eingeflossen
 
 \begin{abstract}
 \selectlanguage{\english}
+Developing software for a microservice on a Plattform as a Service (PaaS) is a common use case. 
+Finding the fitting library is essential, due to the strict resource policies on PaaS.
 
+This work evaluates reporting engines, which are employed to create PDFs, which are  Apache PDFBox, JasperReports and iText. With several prototypes on a PaaS, the libraries behaviour was observed during performance tests.
+The resources were used at best by Apache PDFBox with respect to CPU and Memory. JasperReports showed a great need for memory and CPU. The iText library has shown a balanced use of the memory and CPU. Throughput and latencies where the most performant with Apache PDFBox followed by iText and JasperReports. 
+
+The results showed that out of the three evaluated open source reporting engine, Apache PDFBox and iText were eligible to be used in combination with microservices. We also saw that this results can fluctuate depending on how the tests are defined.
+\end{abstract}
+
+\begin{zusammenfassung}
 
 %Background, 
 Die Enterprise Software ist im Wandel und Microservices werden immer häufiger eingesetzt. 
 % Objectives 
 \noindent
-Diese Arbeit widmet sich der Erforschung der geeigneten Open Source Reporting Engine (OSRE) im Hinblick auf mögliche Ursachen für Peformance-Engpässe und deren Einsatz im Umfeld von Container und \acrfull{iaas}. 
+Diese Arbeit widmet sich der Erforschung der geeigneten Open Source Reporting Engine (OSRE) im Hinblick auf mögliche Ursachen für Performance-Engpässe und deren Einsatz im Umfeld von Containern und \acrfull{iaas}. 
 
 %Methods, 
 \noindent
-Die OSRE wurden in Prototypen genutzt, um verschiedene PDFs zu  erstellen. Die Prototypen wurden als REST-Services auf IaaS deployed und gegen einen Lasttest laufen gelassen. Die Tests gaben Aufschluss über Latenzzeit, Memory-Verbrauch und  Verfügbarkeit des Service. 
+Die OSRE wurden in Prototypen genutzt, um verschiedene PDFs zu  erstellen. Die Prototypen wurden als REST-Services auf IaaS eingesetzt und gegen einen Lasttest laufen gelassen. Die Tests gaben Aufschluss über Latenzzeit, Memory-Verbrauch und  Verfügbarkeit des Service. 
 
 %Results, and 
 \noindent
-Die Ergebnisse haben gezeigt das iText als \acrlong{osre} ein performantes Tool mit gutem API und guter Nutzung der Ressoucen ist. Reine Performance wird mit Apache PDFBox besser erreicht, da dies Tool auf Performance getrimmt wurde hierbei fehlen aber Mittel um schöne oder komplexe Layout zu generieren. Maximaler Durchsatz konnte mit Apache PDFBox bei 151 Anfragen pro Sekunden verzeichnet werden. JasperReport hat sehr gut abgeschnitten im Layout und Usabilty-Teil aber ist kein Kandidat für performante Umsetzung von Services. Über alle Test hinweg hat JasperReport die niedrigste Performance erreicht.
+Die Ergebnisse haben gezeigt, dass iText als \acrlong{osre} performantes Tool mit gutem API und guter Nutzung der Ressoucen ist. Reine Performance wird mit Apache PDFBox besser erreicht, da dieses Tool auf Performance getrimmt wurde. Hierbei fehlen aber die Mittel, um schöne oder komplexe Layouts zu generieren. Ein maximaler Durchsatz konnte mit Apache PDFBox bei 151 Anfragen pro Sekunde verzeichnet werden. JasperReport hat sehr gut abgeschnitten im Layout und im Usabilty-Teil, aber ist kein Kandidat für die performante Umsetzung von Services. Über alle Tests hinweg hat JasperReport die niedrigste Performance erreicht.
 
 %Conclusions
 \noindent
@@ -32,7 +41,7 @@ Die Experimente deuten darauf hin, dass die Auswahl eines geeigneten Frameworks 
 
 
 
-\end{abstract}
+\end{zusammenfassung}
 
 
 
